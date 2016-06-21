@@ -39,6 +39,10 @@ switch ($semana) {
     case 6: $semana = "Sábado"; break;
 
 }
+
+$countServico = 0;
+$countSubservico = 0;
+
 //Agora basta imprimir na tela...
 //echo ("$cidade, $semana, $dia de $mes de $ano");
 ?>
@@ -52,194 +56,419 @@ switch ($semana) {
         body {
             font-family: arial;
         }
-        table, th, td {
+        .paragrafo
+        {
+            text-align: justify;
+        }
+        .table-principal, .tr, .td {
             border: 1px solid black;
             border-collapse: collapse;
         }
-        table , tr , td {
+        .table-principal , .tr , .td {
             font-size: small;
         }
+
     </style>
     <link href="" rel="stylesheet" media="screen">
 </head>
 
-<table style="border: none;" id="topo" class="topo"  width="100%">
-    <tr style="border: none">
-        <td style="border: none; font-size: medium"><center>
-                {{--@if(isset($crud['img']))
-                    <img src="{{asset('/uploads/fotos/'.$crud['img'])}}" alt="Foto"  height="100" width="150">
-                @endif--}}
-            </center></td>
-        <td style="border: none; font-size: medium">
-            <center><h4>ALPHA EDUCAÇÃO E TREINAMENTOS</h4></center>
-        </td>
-        <td style="border: none; font-size: medium">
-            <center>
-                <span>CONTRATO</span>
-            </center>
-        </td>
+<body>
+
+<p class="paragrafo">
+    <b>CONTRATADA:</b> (nome, endereço e inscrição perante o CRC da sociedade prestadora
+    de serviços contábeis ou do escritório individual de contabilidade), neste ato por seu
+    representante legal (se o caso de sociedade), {{$empresa->nome}} ,
+    portador da Cédula de Identidade RG _______________________.
+</p>
+
+<p class="paragrafo">
+    <b>CONTRATANTE:</b> (razão social, endereço, CNPJ), neste ato por seu representante
+    legal (se o caso de sociedade), Sr. {{$contrato->fornecedor->nome_fantasia}}, portador
+    da Cédula de Identidade RG {{$contrato->fornecedor->rg}}.
+</p>
+
+<p>1. DO OBJETO</p>
+
+<p class="paragrafo">
+    O objeto do presente consiste na prestação pela CONTRATADA à CONTRATANTE,
+    dos seguintes serviços profissionais:
+</p>
+
+@for($i = 0; $i < count($servicos); $i++)
+    <p>1.<?php $countServico++; echo $countServico; ?> - {{$servicos[$i]['nome']}}</p>
+    @for($j = 0; $j < count($contrato->subservico); $j++)
+        @if($contrato->subservico[$j]->servico_id == $servicos[$i]['id'])
+            <p class="paragrafo"> 1.{{$countServico}}.<?php $countSubservico++; echo $countSubservico; ?> - {{$contrato->subservico[$j]->nome}} </p>
+        @endif
+    @endfor
+    <?php $countSubservico = 0;?>
+@endfor
+
+<p>2. DAS CONDIÇÕES DE EXECUÇÃO DOS SERVIÇOS</p>
+
+<p class="paragrafo">
+    Os serviços serão executados nas dependências da CONTRATADA, em obediência às seguintes condições:
+</p>
+
+<p class="paragrafo">
+    2.1. - A documentação indispensável para o desempenho dos serviços arrolados na
+    cláusula 1 será fornecida pela CONTRATANTE, consistindo, basicamente, em:
+</p>
+
+<p class="paragrafo">
+    2.1.1 - Boletim de caixa e documentos nele constantes;
+</p>
+
+<p class="paragrafo">
+    2.1.2 - Extratos de todas as contas correntes bancárias, inclusive aplicações; e documentos relativos aos lançamentos, tais como depósitos, cópias de cheques,
+    borderôs de cobrança, descontos, contratos de crédito, avisos de créditos, débitos, entre outros necessários à conciliação;
+</p>
+
+<p class="paragrafo">
+    2.1.3 – Notas Fiscais de compra (entradas) e de venda (saídas), bem como comunicação de eventual cancelamento das mesmas;
+</p>
+
+<p class="paragrafo">
+    2.1.4 - Controle de frequência dos empregados e eventual comunicação para concessão de férias, admissão ou rescisão contratual, bem como correções salariais espontâneas.
+</p>
+
+<p class="paragrafo">
+    2.2. - A documentação deverá ser enviada pela CONTRATANTE de forma completa e em boa ordem nos seguintes prazos:
+</p>
+
+<p class="paragrafo">
+    2.2.1 - Até 5 (cinco) dias após o encerramento do mês, os documentos relacionados nos itens 2.1.1 e 2.1.2, acima;
+</p>
+
+<p class="paragrafo">
+    2.2.2 - Semanalmente, os documentos mencionados no item 2.1.3 acima, sendo que os relativos à última semana do mês, no 1° (primeiro) dia útil do mês seguinte;
+</p>
+
+<p class="paragrafo">
+    2.2.3 - Até o dia 25 do mês de referência quando se tratar dos documentos do item
+</p>
+
+<p class="paragrafo">
+    2.1.4, para elaboração da folha de pagamento;
+</p>
+
+<p class="paragrafo">
+    2.1.4, para elaboração da folha de pagamento;
+</p>
+
+<p class="paragrafo">
+    2.2.4 - No mínimo 48 (quarenta e oito) horas antes a comunicação para dação de aviso
+    de férias e aviso prévio de rescisão contratual de empregados acompanhada do Registro de Empregados.
+</p>
+
+<p class="paragrafo">
+    2.3 - A CONTRATADA compromete-se a cumprir todos os prazos estabelecidos na
+    legislação de regência quanto aos serviços contratados, especificando-se, porém, os prazos abaixo:
+</p>
+
+<p class="paragrafo">
+    2.3.1 - A entrega das guias de recolhimento de tributos e encargos trabalhistas à
+    CONTRATANTE se fará com antecedência de 2 (dois) dias do vencimento da obrigação.
+</p>
+
+<p class="paragrafo">
+    2.3.2 - A entrega da Folha de Pagamento, recibos de pagamento salarial, de férias e
+    demais obrigações trabalhistas far-se- á até 72 (setenta e duas) horas após o recebimento
+    dos documentos mencionados no item 2.1.4.
+</p>
+
+<p class="paragrafo">
+    2.3.3 - A entrega de Balancete se fará até o dia 20 do 2° (segundo) mês subseqüente ao período a que se referir.
+</p>
+
+<p class="paragrafo">
+    2.3.4 - A entrega do Balanço Anual se fará até 30 (trinta) dias após a entrega de todos os
+    dados necessários à sua elaboração, principalmente o Inventário Anual de Estoques, por
+    escrito, cuja execução é de responsabilidade da CONTRATANTE.
+</p>
+
+<p class="paragrafo">
+    2.4. - A remessa de documentos entre os contratantes deverá ser feita sempre sob protocolo.
+</p>
+
+<p>3. DOS DEVERES DA CONTRATADA</p>
+
+<p class="paragrafo">
+    3.1 - A CONTRATADA desempenhará os serviços enumerados na cláusula 1 com todo
+    zelo, diligência e honestidade, observada a legislação vigente, resguardando os
+    interesses da CONTRATANTE, sem prejuízo da dignidade e independência
+    profissionais, sujeitando-se, ainda, às normas do Código de Ética Profissional do
+    Contabilista, aprovado pela Resolução N° 803/96 do Conselho Federal de Contabilidade.
+</p>
+
+<p class="paragrafo">
+    3.2 - Responsabilizar-se- á a CONTRATADA por todos os prepostos que atuarem nos
+    serviços ora contratados, indenizando à CONTRATANTE, em caso de culpa ou dolo.
+</p>
+
+<p class="paragrafo">
+    3.2.1. - A CONTRATADA assume integral responsabilidade por eventuais multas
+    fiscais decorrentes de imperfeições ou atrasos nos serviços ora contratados, excetuando-
+    se os ocasionados por força maior ou caso fortuito, assim definidos em lei, depois de
+    esgotados os procedimentos, de defesa administrativa, sempre observado o disposto no item 3.5.
+</p>
+
+<p class="paragrafo">
+    3.2.1.1. - Não se incluem na responsabilidade assumida pela CONTRATADA os juros e
+    a correção monetária de qualquer natureza, visto que não se tratam de apenamento pela
+    mora, mas sim recomposição e remuneração do valor não recolhido.
+</p>
+
+<p class="paragrafo">
+    3.3 - Obriga-se a CONTRATADA a fornecer à CONTRATANTE, no escritório dessa e
+    dentro do horário normal de expediente, todas as informações relativas ao andamento dos serviços ora contratados.
+</p>
+
+<p class="paragrafo">
+    3.4 - Responsabilizar-se- á a CONTRATADA por todos os documentos a ela entregues
+    pela CONTRATANTE, enquanto permanecerem sob sua guarda para a consecução dos
+    serviços pactuados, respondendo pelo seu mau uso, perda, extravio ou inutilização,
+    salvo comprovado caso fortuito ou força maior, mesmo se tal ocorrer por ação ou
+    omissão de seus prepostos ou quaisquer pessoas que a eles tenham acesso.
+</p>
+
+<p class="paragrafo">
+    3.5 - A CONTRATADA não assume nenhuma responsabilidade pelas consequências de
+    informações, declarações ou documentação inidôneas ou incompletas que lhe forem
+    apresentadas, bem como por omissões próprias da CONTRATANTE ou decorrentes do desrespeito à orientação prestada.
+</p>
+
+<p>4. - DOS DEVERES DA CONTRATANTE</p>
+
+<p>HONORÁRIOS E REEMBOLSOS</p>
+
+<p class="paragrafo">
+    4.1. - Obriga-se a CONTRATANTE a fornecer à CONTRATADA todos os dados,
+    documentos e informações que se façam necessários ao bom desempenho dos serviços
+    ora contratados, em tempo hábil, nenhuma responsabilidade cabendo à segunda acaso recebidos intempestivamente.
+</p>
+
+<p class="paragrafo">
+    <?php
+    $data = \DateTime::createFromFormat('Y-m-d', $contrato->data_pagamento);
+    $dataFromat = $data->format('d');
+    ?>
+    4.2. - Para a execução dos serviços constantes da cláusula 1 a CONTRATANTE pagará à CONTRATADA os honorários profissionais correspondentes a R${{$contrato->valor_contrato}}
+    (______ reais) mensais, até o dia {{$dataFromat}} do mês subsequente ao vencido, podendo a
+    cobrança ser veiculada através da respectiva duplicata de serviços, mantida em carteira ou via cobrança bancária.
+</p>
+
+<p class="paragrafo">
+    4.2.1 - Além da parcela acima avençada, a CONTRATANTE pagará à CONTRATADA
+    uma adicional anual, correspondente ao valor de uma parcela mensal, para atendimento
+    ao acréscimo de serviços e encargos próprios do período final do exercício, tais como o
+    encerramento das demonstrações contábeis anuais, Declaração de Rendimentos da
+    Pessoa Jurídica, Declaração de Movimento Fiscal Estadual, elaboração de informes de
+    rendimento, &quot;RAIS&quot;, Folhas de Pagamento do 13° (décimo terceiro) Salário, &quot;DIRF&quot; e demais obrigações acessórias.
+</p>
+
+<p class="paragrafo">
+    4.2.1.1 - A mensalidade adicional mencionada no item anterior será paga em duas
+    parcelas vencíveis nos dias 20 de novembro e 15 de dezembro de cada exercício e seu
+    valor será equivalente ao dos honorários vigentes no mês de pagamento.
+</p>
+
+<p class="paragrafo">
+    4.2.1.2 - Mesmo no caso de início do contrato em qualquer mês do exercício, a parcela
+    adicional será devida integralmente.
+</p>
+
+<p class="paragrafo">
+    4.2.1.3 - Caso o presente envolva a recuperação de serviços não realizados - atrasados -
+    a mensalidade adicional será integralmente devida desde o primeiro mês de atualização.
+</p>
+
+<p class="paragrafo">
+    4.2.2 - Os honorários pagos após a data avençada no item 4.2. acarretarão à
+    CONTRATANTE o acréscimo de multa de 2% (dois por cento), sem prejuízo de juros
+    moratórios de 1% (um por cento) ao mês ou fração, acrescidos de correção monetária equivalente ao IGP-M.
+</p>
+
+<p class="paragrafo">
+    4.2.3 – Os honorários serão reajustados anualmente e automaticamente segundo a
+    variação do ____________ (índice de correção eleito pelas partes) no período,
+    considerando-se como mês a fração igual ou superior a 15 (quinze) dias.
+</p>
+
+<p class="paragrafo">
+    4.2.4 - O valor dos honorários previstos no item 4.2 foi estabelecido segundo o número
+    de lançamentos contábeis, o número de funcionários e o número de notas fiscais abaixo
+    relacionados no item 4.2.5, ficando certo que se a média trimestral dos mesmos for
+    superior aos parâmetros mencionados na proporção de 20% (vinte por cento), passará a
+    vigir nova mensalidade no mesmo patamar de aumento do volume de serviço,
+    automaticamente, a partir do primeiro dia após o trimestre findo.
+</p>
+
+<p class="paragrafo">
+    4.2.5 - Os parâmetros de fixação dos honorários tiveram como base o volume de papéis
+    e informações fornecidas pela CONTRATANTE, como segue:
+</p>
+
+<center>
+<table class="table-principal" style="width: 70%;">
+    <tr class="tr">
+        <td class="td" style="width: 90%">Quantidade de Funcionários</td>
+        <td><center>( <?php if($contrato->qtd_funcionarios == '1'){ echo 'X';} ?> ) </center></td>
+    </tr>
+    <tr class="tr">
+        <td class="td" style="width: 60%">Quantidade de Notas Fiscais/mês (Entrada/Saída/Serviços)</td>
+        <td><center>( <?php if($contrato->qtd_notas_fiscais == '1'){ echo 'X';} ?> )</center></td>
+    </tr>
+    <tr class="tr">
+        <td class="td" style="width: 60%">Quantidade de Lançamentos Contábeis</td>
+        <td><center>( <?php if($contrato->qtd_lancamentos_contabeis == '1'){ echo 'X';} ?> )</center></td>
     </tr>
 </table>
-<center><span>O DE PRESTAÇÕES DE SERVIÇOS EDUCACIONAIS</span></center>
-<center><span>Pós-Graduação “Lato Sensu”</span></center>
-<center><span>Pelo presente instrumento particular de <u>CONTRATO DE PRESTAÇÃO DE SERVIÇOS EDUCACIONAIS</u>
-        com a <b>ALPHA EDUCAÇÃO E TREINAMENTOS</b>. Inscrita no CNPJ de nº 22.945385/0001-00, doravante denominado CONTRATADA,
-        e do outro lado, o abaixo qualificado, doravante denominado de CONTRATANTE,
-    </span></center><br />
+</center>
 
-<table width="100%">
+<p class="paragrafo">
+    4.2.6 - O percentual de reajuste anual previsto no item 4.2.3 incidirá sobre o valor
+    resultante da aplicação do critério de revisão pelo volume de serviços, conforme item 4.2.4.
+</p>
+
+<p class="paragrafo">
+    4.3 - A CONTRATANTE reembolsará à CONTRATADA o custo de todos os materiais
+    utilizados na execução dos serviços ora ajustados, tais como formulários contínuos,
+    impressos fiscais, trabalhistas e contábeis, bem como livros fiscais, pastas, cópias
+    reprográficas, autenticações, reconhecimento de firmas, custas, emolumentos e taxas
+    exigidas pelos serviços públicos, sempre que utilizados e mediante recibo discriminado
+    acompanhado dos respectivos comprovantes de desembolso.
+</p>
+
+<p class="paragrafo">
+    4.4. - Os serviços solicitados pela CONTRATANTE não especificados na cláusula 1
+    serão cobrados pela CONTRATADA em apartado, como extraordinários, segundo valor
+    específico constante de orçamento previamente aprovado pela primeira, englobando
+    nessa previsão toda e qualquer inovação da legislação relativamente ao regime tributário, trabalhista ou previdenciário.
+</p>
+
+<p class="paragrafo">
+    4.4.1 - São considerados serviços extraordinários ou para-contábeis,
+    exemplificativamente: 1) alteração contratual; 2) abertura de empresa ou filial; 3)
+    certidões negativas do INSS, FGTS, Federais, ICMS e ISS; 4) Certidão negativa de
+    falências ou protestos; 5) Homologação junto à DRT; 6) Autenticação/Registro de
+    Livros; 7) Encadernação de livros; 8) Declaração de ajuste do imposto de renda pessoa física; 9) Preenchimento de fichas cadastrais/IBGE.
+</p>
+
+<p>5. - DA VIGÊNCIA E RESCISÃO</p>
+
+<p class="paragrafo">
+    <?php
+    $data = \DateTime::createFromFormat('Y-m-d', $contrato->data_contrato);
+    $dataContrato = $data->format('d/m/Y');
+    ?>
+    5.1 - O presente contrato vigorará a partir de {{$dataContrato}}, por prazo
+    indeterminado, podendo a qualquer tempo ser rescindido mediante pré-aviso de 60
+    (sessenta) dias, por escrito.
+</p>
+
+<p class="paragrafo">
+    5.1.1 - A parte que não comunicar por escrito a rescisão ou efetuá-la de forma sumária,
+    desrespeitando o pré-aviso previsto, ficará obrigada ao pagamento de multa
+    compensatória no valor de 2 (duas) parcelas mensais dos honorários vigentes à época.
+</p>
+
+<p class="paragrafo">
+    5.1.2 - No caso de rescisão, a dispensa pela CONTRATANTE da execução de quaisquer
+    serviços, seja qual for a razão, durante o prazo do pré-aviso, deverá ser feita por escrito,
+    não a desobrigando do pagamento dos honorários integrais até o termo final do contrato.
+</p>
+
+<p class="paragrafo">
+    5.2 - Ocorrendo a transferência dos serviços para outra Empresa Contábil, a
+    CONTRATANTE deverá informar à CONTRATADA, por escrito, seu nome, endereço,
+    nome do responsável e número da inscrição junto ao Conselho Regional de
+    Contabilidade, sem o que não será possível à CONTRATADA cumprir as formalidades
+    ético-profissionais, inclusive a transmissão de dados e informações necessárias à
+    continuidade dos serviços, em relação às quais, diante da eventual inércia da
+    CONTRATANTE, estará desobrigada de cumprimento.
+</p>
+
+<p class="paragrafo">
+    5.2.1 - Entre os dados e informações a serem fornecidos não se incluem detalhes
+    técnicos dos sistemas de informática da CONTRATADA, os quais são de sua exclusiva propriedade.
+</p>
+
+<p class="paragrafo">
+    5.3 - A falta de pagamento de qualquer parcela de honorários faculta à CONTRATADA
+    suspender imediatamente a execução dos serviços ora pactuados, bem como considerar
+    rescindido o presente, independentemente de notificação judicial ou extrajudicial, sem
+    prejuízo do previsto no item 4.2.2.
+</p>
+
+<p class="paragrafo">
+    5.4 - A falência ou a concordata da CONTRATANTE facultará a rescisão do presente
+    pela CONTRATADA, independentemente de notificação judicial ou extrajudicial, não
+    estando incluídos nos serviços ora pactuados a elaboração das peças contábeis arroladas
+    no artigo 159 do Decreto-Lei 7.661/45 e demais decorrentes.
+</p>
+
+<p class="paragrafo">
+    5.5 - Considerar-se- á rescindido o presente contrato, independentemente de notificação
+    judicial ou extrajudicial, caso qualquer das partes CONTRATANTES venha a infringir cláusula ora convencionada.
+</p>
+
+<p class="paragrafo">
+    5.5.1 - Fica estipulada a multa contratual de uma parcela mensal vigente relativa aos
+    honorários, exigível por inteiro em face da parte que der causa à rescisão motivada, sem
+    prejuízo da penalidade específica do item 4.2.2., se o caso.
+</p>
+
+<p class="paragrafo">
+    5.6 – A assistência da CONTRATADA á CONTRATANTE, após a denúncia do
+    contrato, ocorrerá no prazo de 30 (trinta) dias.
+</p>
+
+<p>6. - DO FORO</p>
+
+<p class="paragrafo">
+    Fica eleito o Foro da Cidade de {{$contrato->foro_cidade}}, com expressa renúncia a qualquer
+    outro, por mais privilegiado que seja, para dirimir as questões oriundas da interpretação
+    e execução do presente contrato.
+</p>
+
+<p class="paragrafo">
+    E, por estarem justos e contratados, assinam o presente, em 2 (duas) vias de igual teor e
+    para um só efeito, na presença de 02 (duas) testemunhas.
+</p>
+
+<p class="paragrafo">
+    Local e Data:
+</p>
+
+
+<table border="0" style="width: 100%">
     <tr>
-        <td style="width: 20px"><b>Aluno</b></td>
-        <td>{!! isset($aluno['nome']) ? $aluno['nome'] : "" !!}</td>
-    </tr>
-</table>
-<br />
-
-<span><b>Filiação: </b></span><span>{!! isset($aluno['nome_pai']) ? $aluno['nome_pai'] : "" !!} </span>e<span> {!! isset($aluno['nome_mae']) ? $aluno['nome_mae'] : "" !!}</span><br />
-<span><b>Nacionalidade: </b></span><span>{!! isset($aluno['nacionalidade']) ? $aluno['nacionalidade'] : "" !!} </span><span><b>Naturalidade: </b></span><span>{!! isset($aluno['naturalidade']) ? $aluno['naturalidade'] : "" !!} </span><span><b>Estado Civil: </b></span><span>{!! isset($aluno['estadoCivil']['nome']) ? $aluno['estadoCivil']['nome'] : "" !!} </span><br />
-<span><b>dentidade RG nº: </b></span><span>{!! isset($aluno['identidade']) ? $aluno['identidade'] : "" !!} </span><span><b>Org. Expedidor: </b></span><span>{!! isset($aluno['orgao_rg']) ? $aluno['orgao_rg'] : "" !!} </span><span><b>UF: </b></span><span>{!! isset($aluno['estado']['nome']) ? $aluno['estado']['nome'] : "" !!} </span><span><b>CPF nº: </b></span><span>{!! isset($aluno['cpf']) ? $aluno['cpf'] : "" !!} </span><br />
-<?php
-if(isset($aluno['data_nasciemento'])) {
-    $date = explode('T', $aluno['data_nasciemento']);
-    $data = \DateTime::createFromFormat('Y-m-d', $date[0]);
-    $dataFromat = $data->format('d/m/Y');
-} else {
-    $dataFromat = "";
-}
-?>
-<span><b>Data de nascimento: </b></span><span>{{$dataFromat}} </span><span><b>Sexo: </b></span><span>{!! isset($aluno['sexo']['nome']) ? $aluno['sexo']['nome'] : "" !!} </span><span><b>Residência: </b></span><span>{!! isset($aluno['endereco']['logradouro']) ? $aluno['endereco']['logradouro'] : "" !!} </span><br />
-<span><b>Bairro: </b></span><span>{!! isset($aluno['endereco']['bairro']['nome']) ? $aluno['endereco']['bairro']['nome'] : "" !!} </span><span><b>Cidade: </b></span><span>{!! isset($aluno['endereco']['bairro']['cidade']['nome']) ? $aluno['endereco']['bairro']['cidade']['nome'] : "" !!} </span><span><b>CEP: </b></span><span>{!! isset($aluno['endereco']['cep']) ? $aluno['endereco']['cep'] : "" !!} </span><br />
-<span><b>Telefones: {!! isset($aluno['telefone_fixo']) ? $aluno['telefone_fixo'] : "" !!} </b></span><span></span><br />
-<span><b>Profissão: </b>{!! isset($aluno['profissao']['nome']) ? $aluno['profissao']['nome'] : "" !!} </span><br /><br />
-
-<span>DOS FUNDAMENTOS LEGAIS</span><br />
-<center><span><b>CLAUSULA I</b></span></center><br />
-<ul>
-    <li>1. O presente contrato é celebrado à vista do que dispõem: inciso IV do art. 1º, inciso II do art. 5º, inciso IV do art. 173</li>
-    <li>2. Os artigos 81,82, 1.025, 1.079, 1.080 e 1.092 do Código Civil Brasileiro</li>
-    <li>3. As Leis nº 8.069/90, 8.078/90, 8.880/94 e 9.069/95</li>
-    <li>4. A Medida Provisória nº 1.477-43, de 03 de dezembro de 1997, com a aplicação dos critérios nela constantes, do conhecimento prévio do CONTRATANTE</li>
-    <li>5. A certificação do contratante será dada pela Faculdade PARCEIRA DA ALPHA de acordo com contrato entre ambos.</li>
-</ul><br />
-<span>DO BENEFICIÁRIO</span><br /><br />
-
-<h4>CLAUSULA II</h4>
-<span>O beneficiário do presente Contrato será:</span><br />
-<span><b>Nome: </b></span><span>{!! isset($aluno['nome']) ? $aluno['nome'] : "" !!} </span><span><b>Curso: </b></span><span> </span><br />
-<span><b>Dia: </b></span><span></span><span><b>Polo: </b></span><span> </span><br /><br />
-<span>DO OBJETO</span><br /><br />
-
-<h4>CLAUSULA III</h4>
-<span>
-    Constitui objeto do presente Contrato, a prestação de Serviços Educacionais para o <b>Curso Pós Graduação “Lato Senso”</b>
-    em ___________________________________________________________, ofertado pela ALPHA EDUCAÇÃO E
-    TREINAMENTOS, de acordo com o prescrito na legislação acima citada, Estatuto e no Regimento Interno da ALPHA, as quais se
-    obrigam a prestá-los ao beneficiário indicado neste Contrato, garantindo os padrões de qualidade estabelecidos pelo Ministério
-    da Educação e a regularidade da oferta de ensino superior de qualidade
-</span><br /><br />
-<span>DO PRAZO DE DURAÇÃO</span><br /><br />
-
-<h4>CLAUSULA IV</h4>
-<span>
-    O presente Contrato terá a duração de 15 meses, com início em _______de ____________ de ______ e termino em
-    _______ de ____________ de ________
-</span><br /><br />
-<span>DA MATRÍCULA</span><br /><br />
-
-<h4>CLAUSULA V</h4>
-<span>
-    A configuração formal do ato de matrícula se procede pelo preenchimento e assinatura do formulário próprio, fornecido
-    pela CONTRATADA, denominado Requerimento de Matricula que desde já, fica fazendo parte integrante deste Contrato
-</span><br /><br />
-<span>DO REGIMENTO ESCOLAR</span><br /><br />
-
-<h4>CLAUSULA VI</h4>
-<span>
-    O beneficiário estará sujeito às normas do Regimento interno da ALPHA, cujo teor está à disposição do
-    CONTRATANTE, considerando-se o aludido Regimento como parte integrante deste Contrato
-</span><br /><br />
-<span>DO INVESTIMENTO E FORMA DE PAGAMENTO</span><br /><br />
-
-<h4>CLAUSULA VII</h4>
-<span>
-    Como contraprestação dos serviços educacionais, acima referidos, será cobrado do CONTRATANTE <br>um investimento de
-    R$ 2.400,00 (dois mil e quatrocentos reais), dividido em 1+ 15 (quinze) parcelas iguais mensais de R$ 150,00</b>, com vencimento no
-    dia do módulo presencial. As parcelas podem variar de acordo com cada curso. A matricula só será devolvida caso não forme turma.
-    § 1° O aluno que efetivar as mensalidades até o dia da aula terá um desconto de acordo com a promoção estipulada pela ALPHA
-    sobre o valor da parcela, caso contrário o valor será integral. A Alpha tem um prazo de 4 meses para fechamento de turmas. O aluno
-    será informado caso não feche turma. O aluno caso desista do curso deverá preencher o requerimento de solicitação e está com as
-    parcelas em dias para realizar o trancamento.
-</span><br /><br />
-<span>DOS SERVIÇOS NÃO INCLUSOS NO PREÇO DO INVESTIMENTO</span><br /><br />
-
-<h4>CLAUSULA VIII</h4>
-<span>
-    Não estão incluídos neste Contrato os serviços especiais e as taxas escolares, assim como: 2º chamada de provas,
-    requerimentos, segunda via de declarações, certificado e outros serviços
-</span><br /><br />
-<span>DA INADIPLENCIA <b>CLAUSULA IX</b></span><br />
-<span>
-    Em caso de falta de pagamento no vencimento, ao valor da parcela em atraso, será acrescida multa e juros de mora, dentro
-    dos limites da legislação em vigor.<br />
-    § 1º No caso de inadimplência, a CONTRATADA poderá emitir letra de cambio, ou título de crédito legal, acrescido dos juros e da
-    multa estabelecida no “caput” desta clausula e levar a protesto sem oposição do CONTRATANTE, ficando a critério da
-    CONTRATADA promover a cobrança extrajudicial ou judicialmente.
-    § 2º Só poderá receber o Certificado de Conclusão do Curso o beneficiário de cujo CONTRATANTE estiver quitado com a
-    tesouraria da ALPHA.
-</span><br /><br />
-<span>DA RECISÃO</span><br /><br />
-
-<h4>CLAUSULA X</h4>
-<span>
-    Este contrato poderá ser rescindido pelo CONTRATANTE, através de desistência formal, isto é, por pedido de
-    cancelamento de matrícula e ainda pela CONTRATADA, quando o CONTRATANTE ou beneficiário do mesmo infringir o
-    Regimento Interno do Estabelecimento de Ensino.
-</span><br /><br />
-<span>DA DISCUÇÃO JUDICIAL</span><br /><br />
-
-<h4>CLAUSULA XI</h4>
-<span>
-    Na hipótese de discussão judicial sobre o presente Contrato, o CONTRATANTE continuará pagando o valor acordado
-    neste contrato até a decisão final.<br />
-    § Único: Em caso de interpretação divergente sobre dispositivo legal, entre a CONTRATADA e os órgãos de Defesa de
-    Consumidor, querendo a CONTRATADA recorrerá ao Poder Judiciário, prevalecendo a interpretação da instituição, até decisão
-    judicial transitada em julgado.
-</span><br /><br />
-<span>DA PLENA EFICÁCIA</span><br /><br />
-
-<h4>CLAUSULA XII</h4>
-<span>
-    As partes atribuem ao presente Contrato plena eficácia e força Executiva Extrajudicial.
-</span><br /><br />
-<span>DO FORO</span><br /><br />
-
-<h4>CLAUSULA XIII</h4>
-<span>
-    As partes elegem o foro da cidade de Recife, Estado de Pernambuco, para ajuizamento de qualquer demanda decorrente
-    do presente Contrato, por mais privilegiado que outro tenha ou venha ter, como autora ou ré.<br />
-    E por declararem as partes contratantes que conhecem todas as clausulas do presente contrato, sabendo que estão todos de
-    acordo com a legislação vigente, nesta data, tornando-se as mesmas irretratáveis e irrevogáveis até o termo final deste Contrato,
-    assinam o presente instrumento em 02 (duas) vias de igual teor e forma na presença de 02 (duas) testemunhas abaixo assinadas, para
-    que se produzam todos os efeitos legais.
-</span><br /><br />
-
-<center><span>Recife, <?php echo ("$semana, $dia de $mes de $ano"); ?></span></center><br /><br />
-<center><span>____________________________________<br />
-                            CONTRATANTE
-    </span></center><br /><br />
-<center><span>____________________________________<br />
-                            CONTRATADO
-    </span></center><br /><br />
-<table width="100%">
-    <tr>
-        <td><center>____________________________________<br />
-                TESTEMUNHA</center>
+        <td>
+            <hr style="width: 100%">
+            CONTRATANTE
         </td>
         <td>
-            <center>____________________________________<br />
-                TESTEMUNHA</center>
+            <hr style="width: 100%">
+            CONTRATADA
         </td>
     </tr>
 </table>
+
+<p>TESTEMUNHAS:</p>
+
+<table border="0" style="width: 100%">
+    <tr>
+        <td>
+            <hr style="width: 100%">
+            NOME E RG:
+        </td>
+        <td>
+            <hr style="width: 100%">
+            NOME E RG:
+        </td>
+    </tr>
+</table>
+
 </body>
 </html>

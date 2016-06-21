@@ -25,7 +25,7 @@
         <div class="ibox-content">
             <div class="row">
                 <div class="col-md-12">
-                    <a href="{{ route('seracademico.role.create')}}" class="btn btn-primary btn-pressure btn-sm btn-sensitive">Novo Perfil</a><br /><br />
+                    <a href="{{ route('serbinario.role.create')}}" class="btn btn-primary btn-pressure btn-sm btn-sensitive">Novo Perfil</a><br /><br />
                     <div class="table-responsive no-padding">
                         <table id="role-grid" class="display table table-bordered" cellspacing="0" width="100%">
                             <thead>
@@ -62,7 +62,7 @@
         var table = $('#role-grid').DataTable({
             processing: true,
             serverSide: true,
-            ajax: "{!! route('seracademico.role.grid') !!}",
+            ajax: "{!! route('serbinario.role.grid') !!}",
             columns: [
                 {data: 'name', name: 'name'},
                 {data: 'description', name: 'description'},

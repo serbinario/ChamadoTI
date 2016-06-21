@@ -1,6 +1,6 @@
 <?php
 
-namespace Seracademico\Http;
+namespace Serbinario\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -13,11 +13,11 @@ class Kernel extends HttpKernel
      */
     protected $middleware = [
         \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
-        \Seracademico\Http\Middleware\EncryptCookies::class,
+        \Serbinario\Http\Middleware\EncryptCookies::class,
         \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
         \Illuminate\Session\Middleware\StartSession::class,
         \Illuminate\View\Middleware\ShareErrorsFromSession::class,
-        \Seracademico\Http\Middleware\VerifyCsrfToken::class,
+        \Serbinario\Http\Middleware\VerifyCsrfToken::class,
     ];
 
     /**
@@ -26,9 +26,9 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
-        'auth' => \Seracademico\Http\Middleware\Authenticate::class,
+        'auth' => \Serbinario\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
-        'guest' => \Seracademico\Http\Middleware\RedirectIfAuthenticated::class,
+        'guest' => \Serbinario\Http\Middleware\RedirectIfAuthenticated::class,
         'role' => \Bican\Roles\Middleware\VerifyRole::class,
         'permission' => \Bican\Roles\Middleware\VerifyPermission::class,
         'level' => \Bican\Roles\Middleware\VerifyLevel::class,

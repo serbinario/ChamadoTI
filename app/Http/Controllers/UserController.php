@@ -1,13 +1,13 @@
 <?php
 
-namespace Seracademico\Http\Controllers;
+namespace Serbinario\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use Seracademico\Http\Requests;
-use Seracademico\Http\Controllers\Controller;
-use Seracademico\Services\UserService;
-use Seracademico\Validators\UserValidator;
+use Serbinario\Http\Requests;
+use Serbinario\Http\Controllers\Controller;
+use Serbinario\Services\UserService;
+use Serbinario\Validators\UserValidator;
 use Yajra\Datatables\Datatables;
 use Prettus\Validator\Contracts\ValidatorInterface;
 

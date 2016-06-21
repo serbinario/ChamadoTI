@@ -1,11 +1,11 @@
 <?php
 
-namespace Seracademico\Http\Controllers;
+namespace Serbinario\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use Seracademico\Http\Requests;
-use Seracademico\Http\Controllers\Controller;
+use Serbinario\Http\Requests;
+use Serbinario\Http\Controllers\Controller;
 
 class DefaultController extends Controller
 {

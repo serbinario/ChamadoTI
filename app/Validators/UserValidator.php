@@ -1,6 +1,6 @@
 <?php
 
-namespace Seracademico\Validators;
+namespace Serbinario\Validators;
 
 use \Prettus\Validator\Contracts\ValidatorInterface;
 use \Prettus\Validator\LaravelValidator;

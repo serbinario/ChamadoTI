@@ -28,7 +28,7 @@
             "database"
         ],
         "psr-4": {
-            "Seracademico\\": "app/",
+            "Serbinario\\": "app/",
             "Serbinario\\L5scaffold\\": "packages/serbinario/l5scaffold/src"
         }
     },

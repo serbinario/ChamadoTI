@@ -1,6 +1,6 @@
 <?php
 
-namespace Seracademico\Http\Requests;
+namespace Serbinario\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 

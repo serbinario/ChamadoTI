@@ -1,6 +1,6 @@
 <?php
 
-namespace Seracademico\Uteis;
+namespace Serbinario\Uteis;
 
 use Carbon\Carbon;
 

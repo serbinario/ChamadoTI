@@ -1,12 +1,12 @@
 <?php
 
-namespace Seracademico\Repositories;
+namespace Serbinario\Repositories;
 
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use Seracademico\Repositories\RoleRepository;
-use Seracademico\Entities\Role;
-use Seracademico\Validators\RoleValidator;;
+use Serbinario\Repositories\RoleRepository;
+use Serbinario\Entities\Role;
+use Serbinario\Validators\RoleValidator;;
 
 /**
  * Class RoleRepositoryEloquent

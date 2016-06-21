@@ -1,8 +1,8 @@
 <?php
 
-namespace Seracademico\Http\Controllers\Auth;
+namespace Serbinario\Http\Controllers\Auth;
 
-use Seracademico\Http\Controllers\Controller;
+use Serbinario\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 
 class PasswordController extends Controller

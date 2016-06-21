@@ -36,33 +36,27 @@
                     <img alt="image" class="logoDash" src="{{ asset('/img/logoser2.png')}}"/>
                 </li>
                 <li>
-                    <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Secretaria</span> <span
+                    <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Cadastro</span> <span
                                 class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
-                        <li><a href="{{ route('seracademico.aluno.index') }}">Alunos</a></li>
+                        <li><a href="{{ route('serbinario.fornecedor.index') }}">Fornecedor</a></li>
+                        <li><a href="{{ route('serbinario.empresa.create') }}">Empresa</a></li>
+                        <li><a href="{{ route('serbinario.servico.index') }}">Serviço</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Cadastros</span> <span
+                    <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Contrato</span> <span
                                 class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
-                        <li><a href="{{ route('seracademico.user.index') }}">Usuários</a></li>
-                        <li><a href="{{ route('seracademico.role.index') }}">Perfís</a></li>
-                        <li><a href="{{ route('seracademico.sala.index') }}">Salas</a></li>
-                        <li><a href="{{ route('seracademico.tipoAvaliacao.index') }}">Tipos de Avaliações</a></li>
-                        <li><a href="{{ route('seracademico.tipoDisciplina.index') }}">Tipos de Disciplinas</a></li>
-                        <li><a href="{{ route('seracademico.tipoCurso.index') }}">Tipos de Cursos</a></li>
-                        <li><a href="{{ route('seracademico.sede.index') }}">Sedes</a></li>
-                        <li><a href="{{ route('seracademico.departamento.index') }}">Departamentos</a></li>
-                        <li><a href="{{ route('seracademico.disciplina.index') }}">Disciplinas</a></li>
-                        <li><a href="{{ route('seracademico.curso.index') }}">Cursos</a></li>
+                        <li><a href="{{ route('serbinario.contrato.index') }}">Gerar</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Parâmetros do sistema</span> <span
+                    <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Administrador</span> <span
                                 class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
-                        <li><a href="{{ route('seracademico.empresa.check') }}">Empresa</a></li>
+                        <li><a href="{{ route('serbinario.user.index') }}">Usuários</a></li>
+                        <li><a href="{{ route('serbinario.role.index') }}">Perfís</a></li>
                     </ul>
                 </li>
             </ul>
@@ -113,13 +107,13 @@
 <!-- Mainly scripts -->
 <script src="{{ asset('/js/jquery-2.1.1.js')}}"></script>
 <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js" type="text/javascript" ></script>
+<script src="{{ asset('/js/jquery.tree.js')}}" type="text/javascript"></script>
 <script src="{{ asset('/js/select2.full.min.js')}}" type="text/javascript"></script>
 <script src="{{ asset('/js/bootstrap.min.js')}}"></script>
 <script src="{{ asset('/js/plugins/metisMenu/jquery.metisMenu.js')}}"></script>
 <script src="{{ asset('/js/plugins/toastr.min.js')}}"></script>
 <script src="{{ asset('/js/plugins/slimscroll/jquery.slimscroll.min.js')}}"></script>
 <script src="{{ asset('/js/bootstrapvalidator.js')}}" type="text/javascript"></script>
-<script src="{{ asset('/js/jquery.tree.js')}}" type="text/javascript"></script>
 <script src="{{ asset('/js/jquery.datetimepicker.js')}}" type="text/javascript"></script>
 
 <script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>

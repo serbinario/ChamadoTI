@@ -1,6 +1,6 @@
 <?php
 
-namespace Seracademico\Repositories;
+namespace Serbinario\Repositories;
 
 use Prettus\Repository\Contracts\RepositoryInterface;
 

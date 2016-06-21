@@ -1,6 +1,6 @@
 <?php
 
-namespace Seracademico\Providers;
+namespace Serbinario\Providers;
 
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -13,8 +13,8 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'Seracademico\Events\SomeEvent' => [
-            'Seracademico\Listeners\EventListener',
+        'Serbinario\Events\SomeEvent' => [
+            'Serbinario\Listeners\EventListener',
         ],
     ];
 

@@ -1,12 +1,12 @@
 <?php
 
-namespace Seracademico\Services;
+namespace Serbinario\Services;
 
 
-use Seracademico\Repositories\RoleRepository;
-use Seracademico\Entities\User;
-use Seracademico\Repositories\PermissionRepository;
-use Seracademico\Repositories\UserRepository;
+use Serbinario\Repositories\RoleRepository;
+use Serbinario\Entities\User;
+use Serbinario\Repositories\PermissionRepository;
+use Serbinario\Repositories\UserRepository;
 
 class UserService
 {
@@ -229,7 +229,7 @@ class UserService
         #Criando e executando as consultas
         foreach ($models as $model) {
             #qualificando o namespace
-            $nameModel = "Seracademico\\Entities\\$model";
+            $nameModel = "Serbinario\\Entities\\$model";
 
             #Recuperando o registro e armazenando no array
             $result[strtolower($model)] = $nameModel::lists('name', 'id');

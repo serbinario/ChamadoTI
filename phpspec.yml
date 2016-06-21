@@ -1,5 +1,5 @@
 suites:
     main:
-        namespace: Seracademico
-        psr4_prefix: Seracademico
+        namespace: Serbinario
+        psr4_prefix: Serbinario
         src_path: app
