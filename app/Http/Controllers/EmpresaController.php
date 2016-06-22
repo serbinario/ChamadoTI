@@ -91,7 +91,7 @@ class EmpresaController extends Controller
             $this->service->store($data);
 
             #Retorno para a view
-            return redirect()->back()->with("message", "Cadastro realizado com sucesso!");
+            return redirect()->route('serbinario.empresa.index')->with("message", "Cadastro realizado com sucesso!");
         } catch (ValidatorException $e) {
             return redirect()->back()->withErrors($this->validator->errors())->withInput();
         } catch (\Throwable $e) {print_r($e->getMessage()); exit;
