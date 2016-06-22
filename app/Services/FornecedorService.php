@@ -39,7 +39,7 @@ class FornecedorService
             'situacao',
             'tipo',
             'tipoEmpresa',
-            'endereco'
+            'endereco.bairro.cidade.estado',
         ];
         
         #Recuperando o registro no banco de dados

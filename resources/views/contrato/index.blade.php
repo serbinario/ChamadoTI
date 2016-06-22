@@ -21,13 +21,15 @@
                         <table id="contrato-grid" class="display table table-bordered" cellspacing="0" width="100%">
                             <thead>
                             <tr>
-                                <th>Foro cidade</th>
+                                <th>Nome da empresa</th>
+                                <th>Código</th>
                                 <th>Acão</th>
                             </tr>
                             </thead>
                             <tfoot>
                             <tr>
-                                <th>Foro cidade</th>
+                                <th>Nome da empresa</th>
+                                <th>Código</th>
                                 <th style="width: 17%;">Acão</th>
                             </tr>
                             </tfoot>
@@ -46,7 +48,8 @@
             serverSide: true,
             ajax: "{!! route('serbinario.contrato.grid') !!}",
             columns: [
-                {data: 'foro_cidade', name: 'foro_cidade'},
+                {data: 'nome_fantasia', name: 'nome_fantasia'},
+                {data: 'codigo', name: 'codigo'},
                 {data: 'action', name: 'action', orderable: false, searchable: false}
             ]
         });

@@ -7,11 +7,11 @@
             <div class="col-md-10">
                 <h4>
                     <i class="fa fa-users"></i>
-                    Listar Alunos
+                    Listar Empresa
                 </h4>
             </div>
             <div class="col-md-2">
-                <a href="{{ route('serbinario.fornecedor.create')}}" class="btn-sm btn-primary">Novo Aluno</a>
+                <a href="{{ route('serbinario.empresa.create')}}" class="btn-sm btn-primary">Nova Empresa</a>
             </div>
         </div>
         <div class="ibox-content">
@@ -21,15 +21,15 @@
                         <table id="fornecedor-grid" class="display table table-bordered" cellspacing="0" width="100%">
                             <thead>
                             <tr>
-                                <th>Razão social</th>
-                                <th>Nome fantasia</th>
+                                <th>Nome</th>
+                                <th>CNPJ</th>
                                 <th>Acão</th>
                             </tr>
                             </thead>
                             <tfoot>
                             <tr>
-                                <th>Razão social</th>
-                                <th>Nome fantasia</th>
+                                <th>Nome</th>
+                                <th>CNPJ</th>
                                 <th style="width: 17%;">Acão</th>
                             </tr>
                             </tfoot>
@@ -46,10 +46,10 @@
         var table = $('#fornecedor-grid').DataTable({
             processing: true,
             serverSide: true,
-            ajax: "{!! route('serbinario.fornecedor.grid') !!}",
+            ajax: "{!! route('serbinario.empresa.grid') !!}",
             columns: [
-                {data: 'razao_social', name: 'razao_social'},
-                {data: 'nome_fantasia', name: 'nome_fantasia'},
+                {data: 'nome', name: 'nome'},
+                {data: 'cpnj', name: 'cpnj'},
                 {data: 'action', name: 'action', orderable: false, searchable: false}
             ]
         });

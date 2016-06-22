@@ -27,7 +27,7 @@ class EmpresaController extends Controller
     * @var array
     */
     private $loadFields = [
-        'Cidade'
+        'Estado'
     ];
 
     /**
@@ -54,7 +54,7 @@ class EmpresaController extends Controller
     public function grid()
     {
         #Criando a consulta
-        $rows = \DB::table('empresa')->select(['id', 'nome']);
+        $rows = \DB::table('empresa')->select(['id', 'nome', 'cpnj']);
 
         #Editando a grid
         return Datatables::of($rows)->addColumn('action', function ($row) {

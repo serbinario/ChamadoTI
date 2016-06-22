@@ -10,10 +10,20 @@ class Cidade extends Model implements Transformable
 {
     use TransformableTrait;
 
-    protected $table    = 'cidade';
+    protected $table    = 'cidades';
 
-    protected $fillable = [ 
-		'nome',
-	];
+    protected $fillable = [
+        'nome',
+        'estados_id'
+    ];
 
+    public function bairros()
+    {
+        return $this->hasMany(Bairro::class, "cidades_id");
+    }
+
+    public function estado()
+    {
+        return $this->belongsTo(Estado::class, "estados_id");
+    }
 }

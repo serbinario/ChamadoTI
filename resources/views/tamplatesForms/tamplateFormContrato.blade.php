@@ -16,10 +16,10 @@
                     <div role="tabpanel" class="tab-pane active" id="parametro">
                         <br/>
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     {!! Form::label('fornecedor_id', 'Cliente') !!}
-                                    {!! Form::select('fornecedor_id', $loadFields['fornecedor'], Session::getOldInput('fornecedor_id'),array('class' => 'form-control')) !!}
+                                    {!! Form::select('fornecedor_id', $loadFields['fornecedor'], Session::getOldInput('fornecedor_id'),array('class' => 'form-control', 'id' => 'fornecedor')) !!}
                                 </div>
                             </div>
                         </div>
@@ -56,13 +56,13 @@
                             <div class="col-md-2">
                                 <div class="form-group">
                                     {!! Form::label('valor_contrato', 'Valor do contrato') !!}
-                                    {!! Form::text('valor_contrato', Session::getOldInput('valor_contrato')  , array('class' => 'form-control')) !!}
+                                    {!! Form::text('valor_contrato', Session::getOldInput('valor_contrato')  , array('class' => 'form-control money')) !!}
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
                                     {!! Form::label('data_pagamento', 'Data de pagamento') !!}
-                                    {!! Form::text('data_pagamento', Session::getOldInput('data_pagamento')  , array('class' => 'form-control')) !!}
+                                    {!! Form::text('data_pagamento', Session::getOldInput('data_pagamento')  , array('class' => 'form-control datepicker')) !!}
                                 </div>
                             </div>
                         </div>

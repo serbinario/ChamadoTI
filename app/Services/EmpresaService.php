@@ -34,8 +34,12 @@ class EmpresaService
      */
     public function find($id)
     {
+        $relacionamentos = [
+            'endereco.bairro.cidade.estado',
+        ];
+        
         #Recuperando o registro no banco de dados
-        $empresa = $this->repository->find($id);
+        $empresa = $this->repository->with($relacionamentos)->find($id);
 
         #Verificando se o registro foi encontrado
         if(!$empresa) {
@@ -76,12 +80,13 @@ class EmpresaService
      */
     public function update(array $data, int $id) : Empresa
     {
+        
         #Atualizando no banco de dados
         $empresa = $this->repository->update($data, $id);
-
+        $endereco = $this->repoEndereco->update($data['endereco'], $empresa->endereco->id);
 
         #Verificando se foi atualizado no banco de dados
-        if(!$empresa) {
+        if(!$empresa || !$endereco) {
             throw new \Exception('Ocorreu um erro ao cadastrar!');
         }
 

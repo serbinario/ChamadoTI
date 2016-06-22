@@ -23,6 +23,7 @@
                             <tr>
                                 <th>Razão social</th>
                                 <th>Nome fantasia</th>
+                                <th>CNPJ</th>
                                 <th>Acão</th>
                             </tr>
                             </thead>
@@ -30,6 +31,7 @@
                             <tr>
                                 <th>Razão social</th>
                                 <th>Nome fantasia</th>
+                                <th>CNPJ</th>
                                 <th style="width: 17%;">Acão</th>
                             </tr>
                             </tfoot>
@@ -50,6 +52,7 @@
             columns: [
                 {data: 'razao_social', name: 'razao_social'},
                 {data: 'nome_fantasia', name: 'nome_fantasia'},
+                {data: 'cnpj', name: 'cnpj'},
                 {data: 'action', name: 'action', orderable: false, searchable: false}
             ]
         });

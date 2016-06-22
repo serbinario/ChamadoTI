@@ -31,7 +31,7 @@ class FornecedorController extends Controller
         ,'Tipo'
         ,'TipoEmpresa'
         ,'Situacao'
-        ,'Cidade'
+        ,'Estado'
     ];
 
     /**
@@ -58,7 +58,7 @@ class FornecedorController extends Controller
     public function grid()
     {
         #Criando a consulta
-        $rows = \DB::table('fornecedor')->select(['id', 'razao_social', 'nome_fantasia']);
+        $rows = \DB::table('fornecedor')->select(['id', 'razao_social', 'nome_fantasia', 'cnpj']);
 
         #Editando a grid
         return Datatables::of($rows)->addColumn('action', function ($row) {

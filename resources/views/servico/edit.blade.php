@@ -51,7 +51,7 @@
 @endsection
 //echo $cliente['enderecosEnderecos']['bairrosBairros']['cidadesCidades']['estadosEstados']['id']; ?>
     @section('javascript')
-        <script src="{{ asset('/js/validacoes/validation_form_aluno.js')}}"></script>
+        <script src="{{ asset('validation_form_fornecedor.jsor.js')}}"></script>
 
         <script type="text/javascript">
 

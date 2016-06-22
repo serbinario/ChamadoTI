@@ -54,37 +54,89 @@ class UtilController extends Controller
             $pageValue   = $request->get('page');
             $fieldWhere  = $request->get('fieldWhere');
             $valueWhere  = $request->get('valueWhere');
+            $columnSelect = $request->get('columnSelect');
+
+            //consulta para not in que precisarão de outra tabela para recuperar os dados
+            $tableNotIn     = $request->get('tableNotIn');
+            $columnNotWhere = $request->get('columnNotWhere');
+            $culmnNotGet    = $request->get('culmnNotGet');
+            $columnWhere    = $request->get('columnWhere');
+            $valueNotWhere  = $request->get('valueNotWhere');
 
 //            #Validando os parametros
 //            if($searchValue == null || $tableName == null || $fieldName == null || $pageValue == null) {
 //                throw new \Exception('Parametros inválidos');
 //            }
 
-            #preparando a consulta
-            $qb = DB::table($tableName)->select('id', 'nome');
-            $qb->skip($pageValue);
-            $qb->take(10);
-            $qb->orderBy('nome', 'asc');
-            $qb->where($fieldName,'like', "%$searchValue%");
+            if(isset($columnSelect) && $columnSelect != null) {
+                #preparando a consulta
+                $qb = DB::table($tableName)->select('id', $columnSelect);
+                $qb->skip($pageValue);
+                $qb->take(10);
+                $qb->orderBy($columnSelect, 'asc');
+                $qb->where($fieldName,'like', "%$searchValue%");
+            } else {
+                #preparando a consulta
+                $qb = DB::table($tableName)->select('id', 'nome');
+                $qb->skip($pageValue);
+                $qb->take(10);
+                $qb->orderBy('nome', 'asc');
+                $qb->where($fieldName,'like', "%$searchValue%");
+            }
 
             #Validando os campos de where
             if($fieldWhere != null && $valueWhere != null) {
                 $qb->where($fieldWhere, "$valueWhere");
             }
 
-            #executando a consulta e recuperando os dados
-            $resultItems = $qb->get();
+            #Fazendo validações not in
+            if($tableNotIn != null && $columnNotWhere != null && $culmnNotGet != null) {
+                $dadosNoIn = \DB::table($tableNotIn)->distinct()->select($culmnNotGet)->where($columnWhere, "$valueNotWhere")->get();
 
-            #criando o array de retorno
-            foreach($resultItems as $item) {
-                $result[] = [
-                    "id" => $item->id,
-                    "text" => $item->nome
-                ];
+                #Tratando o retorno dos dados not in
+                $arrayId   = [];
+                foreach ($dadosNoIn as $rowNotIN) {
+                    $arrayId[] =  $rowNotIN->$culmnNotGet;
+                }
+
+                $qb->whereNotIn($columnNotWhere, $arrayId);
             }
 
+            #executando a consulta e recuperando os dados
+            $resultTotal = $qb->get();
+
+            $pageValue = $pageValue == 1 ? 0 : ($pageValue * 5) - 5;
+
+            $qb->skip($pageValue);
+            $qb->take(5);
+
+            $resultItems = $qb->get();
+
+            if(isset($columnSelect) && $columnSelect != null) {
+                #criando o array de retorno
+                foreach($resultItems as $item) {
+                    $result[] = [
+                        "id" => $item->id,
+                        "text" => $item->$columnSelect
+                    ];
+                }
+            } else {
+                #criando o array de retorno
+                foreach($resultItems as $item) {
+                    $result[] = [
+                        "id" => $item->id,
+                        "text" => $item->nome
+                    ];
+                }
+            }
+
+            $resultRetorno = [
+                'data' => $result,
+                'more' => ($pageValue + 5) < count($resultTotal)
+            ];
+
             #retorno
-            return $result;
+            return $resultRetorno;
         } catch (\Throwable $e) {
             return \Illuminate\Support\Facades\Response::json([
                 'error' => $e->getMessage()

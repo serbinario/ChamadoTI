@@ -93,11 +93,18 @@ class SeracademicoRepositoryProvider extends ServiceProvider
 			\Serbinario\Repositories\SubservicoRepository::class,
 			\Serbinario\Repositories\SubservicoRepositoryEloquent::class
 		);
-
 		$this->app->bind(
 			\Serbinario\Repositories\ContratoRepository::class,
 			\Serbinario\Repositories\ContratoRepositoryEloquent::class
 		);
-
+		$this->app->bind(
+			\Serbinario\Repositories\BairroRepository::class,
+			\Serbinario\Repositories\BairroRepositoryEloquent::class
+		);
+		
+		$this->app->bind(
+			\Serbinario\Repositories\EstadoRepository::class,
+			\Serbinario\Repositories\EstadoRepositoryEloquent::class
+		);
 	}
 }

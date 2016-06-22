@@ -4,14 +4,15 @@ namespace Serbinario\Repositories;
 
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use Serbinario\Repositories\CidadeRepository;
-use Serbinario\Entities\Cidade;
+use Serbinario\Validators\BairroValidator;
+use Serbinario\Repositories\BairroRepository;
+use Serbinario\Entities\Bairro;
 
 /**
- * Class CidadeRepositoryEloquent
+ * Class BairroRepositoryEloquent
  * @package namespace App\Repositories;
  */
-class CidadeRepositoryEloquent extends BaseRepository implements CidadeRepository
+class BairroRepositoryEloquent extends BaseRepository implements BairroRepository
 {
     /**
      * Specify Model class name
@@ -20,7 +21,7 @@ class CidadeRepositoryEloquent extends BaseRepository implements CidadeRepositor
      */
     public function model()
     {
-        return Cidade::class;
+        return Bairro::class;
     }
 
     /**
@@ -31,7 +32,7 @@ class CidadeRepositoryEloquent extends BaseRepository implements CidadeRepositor
     public function validator()
     {
 
-         return CidadeValidator::class;
+         return BairroValidator::class;
     }
 
 

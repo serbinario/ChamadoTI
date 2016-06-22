@@ -7,7 +7,7 @@
         <div class="ibox-title">
             <h4>
                 <i class="fa fa-user"></i>
-                Editar Aluno
+                Editar Empresa
             </h4>
         </div>
         <div class="ibox-content">
@@ -41,20 +41,95 @@
                 @endif
             @endif
 
-            {!! Form::model($model, ['route'=> ['serbinario.fornecedor.update', $model->id], 'id' => 'formAluno', 'enctype' => 'multipart/form-data']) !!}
-                @include('tamplatesForms.tamplateFormAluno')
-                {{--<a href="{{ route('seracademico.report.contratoAluno', ['id' => $crud->id]) }}" target="_blank" class="btn btn-info">Contrato</a>--}}
+            {!! Form::model($model, ['route'=> ['serbinario.empresa.update', $model->id], 'id' => 'formEmpresa', 'enctype' => 'multipart/form-data']) !!}
+            @include('tamplatesForms.tamplateFormEmpresa')
+            {{--<a href="{{ route('seracademico.report.contratoAluno', ['id' => $crud->id]) }}" target="_blank" class="btn btn-info">Contrato</a>--}}
             {!! Form::close() !!}
         </div>
     </div>
-<?php
+    <?php
 @endsection
 //echo $cliente['enderecosEnderecos']['bairrosBairros']['cidadesCidades']['estadosEstados']['id']; ?>
-    @section('javascript')
-        <script src="{{ asset('/js/validacoes/validation_form_aluno.js')}}"></script>
+@section('javascript')
+    <script src="{{ asset('/js/validacoes/validation_form_empresa.js') }}"></script>
 
-        <script type="text/javascript">
+    <script type="text/javascript">
+        //Carregando as cidades
+        $(document).on('change', "#estado", function () {
+            //Removendo as cidades
+            $('#cidade option').remove();
 
-        </script>
-    @stop
+            //Removendo as Bairros
+            $('#bairro option').remove();
+
+            //Recuperando o estado
+            var estado = $(this).val();
+
+            if (estado !== "") {
+                var dados = {
+                    'table' : 'cidades',
+                    'field_search' : 'estados_id',
+                    'value_search': estado,
+                };
+
+                jQuery.ajax({
+                    type: 'POST',
+                    url: '{{ route('serbinario.util.search')  }}',
+                    data: dados,
+                    datatype: 'json',
+                    headers: {
+                        'X-CSRF-TOKEN' : '{{  csrf_token() }}'
+                    },
+                }).done(function (json) {
+                    var option = "";
+
+                    option += '<option value="">Selecione uma cidade</option>';
+                    for (var i = 0; i < json.length; i++) {
+                        option += '<option value="' + json[i]['id'] + '">' + json[i]['nome'] + '</option>';
+                    }
+
+                    $('#cidade option').remove();
+                    $('#cidade').append(option);
+                });
+            }
+        });
+
+        //Carregando os bairros
+        $(document).on('change', "#cidade", function () {
+            //Removendo as Bairros
+            $('#bairro option').remove();
+
+            //Recuperando a cidade
+            var cidade = $(this).val();
+
+            if (cidade !== "") {
+                var dados = {
+                    'table' : 'bairros',
+                    'field_search' : 'cidades_id',
+                    'value_search': cidade,
+                };
+
+                jQuery.ajax({
+                    type: 'POST',
+                    url: '{{ route('serbinario.util.search')  }}',
+                    headers: {
+                        'X-CSRF-TOKEN': '{{  csrf_token() }}'
+                    },
+                    data: dados,
+                    datatype: 'json'
+                }).done(function (json) {
+                    var option = "";
+
+                    option += '<option value="">Selecione um bairro</option>';
+                    for (var i = 0; i < json.length; i++) {
+                        option += '<option value="' + json[i]['id'] + '">' + json[i]['nome'] + '</option>';
+                    }
+
+                    $('#bairro option').remove();
+                    $('#bairro').append(option);
+                });
+            }
+        });
+    </script>
+@stop
 @stop

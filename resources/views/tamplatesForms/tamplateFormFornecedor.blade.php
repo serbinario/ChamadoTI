@@ -57,19 +57,19 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     {!! Form::label('tel_um', 'Telefone 1') !!}
-                                    {!! Form::text('tel_um', Session::getOldInput('tel_um')  , array('class' => 'form-control')) !!}
+                                    {!! Form::text('tel_um', Session::getOldInput('tel_um')  , array('class' => 'form-control telefone')) !!}
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
                                     {!! Form::label('tel_dois', 'Telefone 2') !!}
-                                    {!! Form::text('tel_dois', Session::getOldInput('tel_dois')  , array('class' => 'form-control')) !!}
+                                    {!! Form::text('tel_dois', Session::getOldInput('tel_dois')  , array('class' => 'form-control telefone')) !!}
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
                                     {!! Form::label('tel_tres', 'Telefone 3') !!}
-                                    {!! Form::text('tel_tres', Session::getOldInput('tel_tres')  , array('class' => 'form-control')) !!}
+                                    {!! Form::text('tel_tres', Session::getOldInput('tel_tres')  , array('class' => 'form-control telefone')) !!}
                                 </div>
                             </div>
                         </div>
@@ -111,7 +111,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     {!! Form::label('vencimento', 'Vencimento') !!}
-                                    {!! Form::text('vencimento', Session::getOldInput('vencimento')  , array('class' => 'form-control')) !!}
+                                    {!! Form::text('vencimento', Session::getOldInput('vencimento')  , array('class' => 'form-control datepicker')) !!}
                                 </div>
                             </div>
                         </div>
@@ -129,7 +129,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
+                        {{--<div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
                                     {!! Form::label('controle_um', 'Controle 1') !!}
@@ -142,7 +142,7 @@
                                     {!! Form::text('controle_dois', Session::getOldInput('controle_dois')  , array('class' => 'form-control')) !!}
                                 </div>
                             </div>
-                        </div>
+                        </div>--}}
                     </div>
                     <div role="tabpanel" class="tab-pane fade" id="endereco">
                         <br/>
@@ -161,23 +161,29 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-5">
-                                <div class="form-group">
-                                    {!! Form::label('cidade', 'Cidade') !!}
-                                    {!! Form::select('endereco[cidade]', $loadFields['cidade'], Session::getOldInput('endereco[cidade]'),array('class' => 'form-control')) !!}
-                                </div>
+                            <div class="form-group col-md-3">
+                                {!! Form::label('estado', 'UF ') !!}
+                                @if(isset($model->endereco->bairro->cidade->estado->id))
+                                    {!! Form::select('estado', $loadFields['estado'], $model->endereco->bairro->cidade->estado->id, array('class' => 'form-control', 'id' => 'estado')) !!}
+                                @else
+                                    {!! Form::select('estado', $loadFields['estado'], Session::getOldInput('estado'), array('class' => 'form-control', 'id' => 'estado')) !!}
+                                @endif
                             </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    {!! Form::label('bairro', 'Bairro') !!}
-                                    {!! Form::text('endereco[bairro]', Session::getOldInput('endereco[cep]')  , array('class' => 'form-control')) !!}
-                                </div>
+                            <div class="form-group col-md-3">
+                                {!! Form::label('cidade', 'Cidade ') !!}
+                                @if(isset($model->endereco->bairro->cidade->id))
+                                    {!! Form::select('cidade', array($model->endereco->bairro->cidade->id => $model->endereco->bairro->cidade->nome), $model->endereco->bairro->cidade->id,array('class' => 'form-control', 'id' => 'cidade')) !!}
+                                @else
+                                    {!! Form::select('cidade', array(), Session::getOldInput('cidade'),array('class' => 'form-control', 'id' => 'cidade')) !!}
+                                @endif
                             </div>
-                            <div class="col-md-1">
-                                <div class="form-group">
-                                    {!! Form::label('uf', 'UF') !!}
-                                    {!! Form::text('endereco[uf]', Session::getOldInput('endereco[uf]')  , array('class' => 'form-control')) !!}
-                                </div>
+                            <div class="form-group col-md-4">
+                                {!! Form::label('endereco[bairros_id]', 'Bairro ') !!}
+                                @if(isset($model->endereco->bairro->id))
+                                    {!! Form::select('endereco[bairros_id]', array($model->endereco->bairro->id => $model->endereco->bairro->nome), $model->endereco->bairro->id,array('class' => 'form-control', 'id' => 'bairro')) !!}
+                                @else
+                                    {!! Form::select('endereco[bairros_id]', array(), Session::getOldInput('bairro'),array('class' => 'form-control', 'id' => 'bairro')) !!}
+                                @endif
                             </div>
                         </div>
                     </div>

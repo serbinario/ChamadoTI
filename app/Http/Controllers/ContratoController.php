@@ -54,7 +54,9 @@ class ContratoController extends Controller
     public function grid()
     {
         #Criando a consulta
-        $rows = \DB::table('contrato')->select(['id', 'foro_cidade']);
+        $rows = \DB::table('contrato')
+            ->join('fornecedor', 'fornecedor.id', '=', 'contrato.fornecedor_id')
+            ->select(['contrato.id', 'fornecedor.nome_fantasia', 'contrato.codigo']);
 
         #Editando a grid
         return Datatables::of($rows)->addColumn('action', function ($row) {
