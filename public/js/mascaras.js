@@ -13,6 +13,8 @@ $(document).ready(function(){
     //CNPJ
     $('.cnpj').mask('00.000.000.0000-00');
 
+    $('.date').mask('00/00/0000');
+
     //Telefone
     $('.phone').mask('(00) 00000.000');
 

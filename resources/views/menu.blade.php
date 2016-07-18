@@ -36,16 +36,7 @@
                     <img alt="image" class="logoDash" src="{{ asset('/img/logosergestorb.png')}}"/>
                 </li>
                 <li>
-                    <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Cadastro</span> <span
-                                class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level collapse">
-                        <li><a href="{{ route('serbinario.fornecedor.index') }}">Cliente/Fornecedor</a></li>
-                        <li><a href="{{ route('serbinario.empresa.index') }}">Empresa</a></li>
-                        <li><a href="{{ route('serbinario.servico.index') }}">Serviço</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="{{ route('serbinario.contrato.index') }}"><i class="fa fa-th-large"></i> Contrato</a>
+                    <a href="{{ route('serbinario.chamado.index') }}"><i class="fa fa-th-large"></i> Chamado</a>
                 </li>
                 <li>
                     <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Administrador</span> <span
