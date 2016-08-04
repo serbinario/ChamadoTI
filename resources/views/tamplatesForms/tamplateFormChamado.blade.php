@@ -60,7 +60,7 @@
     </div>
 </div>
 @section('javascript')
-    <script src="{{ asset('/js/validacoes/validation_form_empresa.js') }}"></script>
+    <script src="{{ asset('/js/validacoes/validation_form_chamado.js') }}"></script>
 
     <script type="text/javascript">
         //Carregando as cidades

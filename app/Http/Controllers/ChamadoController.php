@@ -65,6 +65,7 @@ class ChamadoController extends Controller
                 'users.name as nome',
                 'chamado.codigo as codigo',
                 'departamento.nome as dep_nome',
+                'chamado.responsavel as responsavel',
                 'lista.nome as lista_nome',
                 'sublista.nome as sublista_nome',
                 'chamado.descricao as descricao',

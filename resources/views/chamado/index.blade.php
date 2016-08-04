@@ -74,6 +74,7 @@
                                 <th>Código</th>
                                 <th>Nome</th>
                                 <th>Departamento</th>
+                                <th>Responsável</th>
                                 <th>Lista</th>
                                 <th>Sublista</th>
                                 <th>Data</th>
@@ -86,6 +87,7 @@
                                 <th>Código</th>
                                 <th>Nome</th>
                                 <th>Departamento</th>
+                                <th>Responsável</th>
                                 <th>Lista</th>
                                 <th>Sublista</th>
                                 <th>Data</th>
@@ -131,6 +133,7 @@
                     {data: 'codigo', name: 'chamado.codigo'},
                     {data: 'nome', name: 'users.name'},
                     {data: 'dep_nome', name: 'departamento.nome'},
+                    {data: 'responsavel', name: 'chamado.responsavel'},
                     {data: 'lista_nome', name: 'lista.nome'},
                     {data: 'sublista_nome', name: 'sublista.nome'},
                     {data: 'data', name: 'chamado.data'},

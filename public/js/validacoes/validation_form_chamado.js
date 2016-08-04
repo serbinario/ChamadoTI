@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $('#formFornecedor').bootstrapValidator({
+    $('#formChamado').bootstrapValidator({
         excluded: [':disabled'],
         feedbackIcons: {
             valid: 'glyphicon glyphicon-ok',
@@ -7,42 +7,42 @@ $(document).ready(function () {
             validating: 'glyphicon glyphicon-refresh'
         },
         fields: {
-            'pessoa_id': {
+            'data': {
                 validators: {
                     notEmpty: {
                         message: "Este campo é obrigatório",
                     },
                 },
             },
-            'tipo_id': {
+            'departamento_id': {
                 validators: {
                     notEmpty: {
                         message: "Este campo é obrigatório",
                     },
                 },
             },
-            'situacao_id': {
+            'responsavel': {
                 validators: {
                     notEmpty: {
                         message: "Este campo é obrigatório",
                     },
                 },
             },
-            'tel_um': {
+            'lista': {
                 validators: {
                     notEmpty: {
                         message: "Este campo é obrigatório",
                     },
                 },
             },
-            'cnpj': {
+            'sublista_id': {
                 validators: {
                     notEmpty: {
                         message: "Este campo é obrigatório",
                     },
                 },
             },
-            'tipo_empresa_id': {
+            'descricao': {
                 validators: {
                     notEmpty: {
                         message: "Este campo é obrigatório",

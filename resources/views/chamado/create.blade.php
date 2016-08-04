@@ -29,7 +29,7 @@
                 </div>
             @endif
 
-            {!! Form::open(['route'=>'serbinario.chamado.store', 'method' => "POST", 'id' => 'formEmpresa']) !!}
+            {!! Form::open(['route'=>'serbinario.chamado.store', 'method' => "POST", 'id' => 'formChamado']) !!}
                 @include('tamplatesForms.tamplateFormChamado')
             {!! Form::close() !!}
         </div>
