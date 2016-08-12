@@ -39,6 +39,14 @@
                     <a href="{{ route('serbinario.chamado.index') }}"><i class="fa fa-th-large"></i> Chamado</a>
                 </li>
                 <li>
+                    <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Gráficos</span> <span
+                                class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="{{ route('serbinario.graficos.departamento') }}" target="_blank">Departamento</a></li>
+                        <li><a href="{{ route('serbinario.graficos.lista') }}" target="_blank">Lista</a></li>
+                    </ul>
+                </li>
+                <li>
                     <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Administrador</span> <span
                                 class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
