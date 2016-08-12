@@ -123,6 +123,7 @@
                     url: "{!! route('serbinario.chamado.grid') !!}",
                     method: 'POST'
                 },
+                "order": [[ 2, "asc" ]],
                 columns: [
                     {
                         "className":      'details-control',
