@@ -43,7 +43,7 @@
                 </h4>
             </div>
             <div class="col-md-2">
-                <a href="{{ route('serbinario.chamado.create')}}" class="btn-sm btn-primary">Nova Empresa</a>
+                <a href="{{ route('serbinario.chamado.create')}}" class="btn-sm btn-primary">Novo Chamado</a>
             </div>
         </div>
         <div class="ibox-content">
