@@ -81,7 +81,7 @@ class GraficosController extends Controller
             ])->get();
 
         $dados = [];
-        $dados[0] = ['Lista', 'Listas'];
+        $dados[0] = ['Chamados', 'Chamados'];
 
         $contar = 1;
         foreach ($rows as $row) {

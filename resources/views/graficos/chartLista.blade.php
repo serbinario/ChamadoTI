@@ -40,8 +40,8 @@
         var data = google.visualization.arrayToDataTable(json);
 
         var options = {
-            title: 'Lista',
-            is3D: true,
+            title: 'Chamados',
+            is3D: true
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
