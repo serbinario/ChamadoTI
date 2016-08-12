@@ -22,6 +22,11 @@ class Sublista extends Model implements Transformable
     {
         return $this->hasMany(Chamado::class, "sublista_id");
     }
+
+    public function lista()
+    {
+        return $this->belongsTo(Lista::class, "lista_id");
+    }
     
 
 }

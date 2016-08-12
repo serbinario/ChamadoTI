@@ -23,8 +23,12 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="form-group">
-                    {!! Form::label('lista', 'Lista') !!}
-                    {!! Form::select('lista', (['' => 'Selecione uma lista'] + $loadFields['lista']->toArray()), null,array('class' => 'form-control')) !!}
+                    {!! Form::label('lista', 'Lista ') !!}
+                    @if(isset($model->sublista->lista->id))
+                        {!! Form::select('lista', $loadFields['lista'], $model->sublista->lista->id, array('class' => 'form-control', 'id' => 'estado')) !!}
+                    @else
+                        {!! Form::select('lista', (['' => 'Selecione uma lista'] + $loadFields['lista']->toArray()), Session::getOldInput('estado'), array('class' => 'form-control', 'id' => 'lista')) !!}
+                    @endif
                 </div>
             </div>
             <div class="col-md-4">
