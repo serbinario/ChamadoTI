@@ -126,7 +126,7 @@ class ChamadoController extends Controller
             $model = $this->service->find($id);
 
             #Tratando as datas
-           // $aluno = $this->service->getAlunoWithDateFormatPtBr($aluno);
+            $aluno = $this->service->getWithDateFormatPtBr($model);
 
             #Carregando os dados para o cadastro
             $loadFields = $this->service->load($this->loadFields);

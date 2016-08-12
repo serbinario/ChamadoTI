@@ -4,7 +4,7 @@
             <div class="col-md-2">
                 <div class="form-group">
                     {!! Form::label('data', 'Data') !!}
-                    {!! Form::text('data', Session::getOldInput('data')  , array('class' => 'form-control date datepicker')) !!}
+                    {!! Form::text('data', Session::getOldInput('data') , array('class' => 'form-control date datepicker')) !!}
                 </div>
             </div>
             <div class="col-md-3">

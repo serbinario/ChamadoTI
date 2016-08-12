@@ -195,7 +195,7 @@ class ChamadoService
     public function getWithDateFormatPtBr($model)
     {
         #validando as datas
-        $model->data   = $model->vencimento == '0000-00-00' ? "" : $model->data;
+        $model->data   = $model->data == '0000-00-00' ? "" : $model->data;
 
         #tratando as datas
         $model->data   = date('d/m/Y', strtotime($model->data));
