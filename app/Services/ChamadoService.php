@@ -28,7 +28,7 @@ class ChamadoService
     public function find($id)
     {
         #Recuperando o registro no banco de dados
-        $chamado = $this->repository->find($id);
+        $chamado = $this->repository->with(['sublista.lista', 'departamento', 'user'])->find($id);
 
         #Verificando se o registro foi encontrado
         if(!$chamado) {
