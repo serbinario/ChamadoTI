@@ -1,75 +1,95 @@
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script src="{{ asset('/js/jquery-2.1.1.js')}}"></script>
-    <style type="text/css" class="init">
+@extends('menu')
 
-        body {
-            font-family: arial;
-        }
-        table, th, td {
-            border: 1px solid black;
-            border-collapse: collapse;
-        }
-        table , tr , td {
-            font-size: small;
-        }
-    </style>
-    <link href="" rel="stylesheet" media="screen">
-</head>
+@section('content')
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <div class="col-sm-6 col-md-9">
+                <h4>
+                    <i class="material-icons"></i>
+                    Serviços por departamento
+                </h4>
+            </div>
+        </div>
+        <div class="ibox-content">
+            <br><br>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="flot-chart">
+                        <div class="flot-chart-content" id="flot-bar-chart"></div>
+                    </div>
+                </div>
 
-<body>
-<script type="text/javascript">
-    google.charts.load("current", {packages:["corechart"]});
-    google.charts.setOnLoadCallback(drawChart);
-
-    $.ajax({
-        url: '{{route('serbinario.graficos.departamentoAjax')}}',
-        type: 'POST',
-        dataType: 'JSON',
-        success: function (json) {
-           // console.log(json);
-            drawChart(json)
-        }
-    });
-
-    function drawChart(json) {
-
-        var data = google.visualization.arrayToDataTable(json);
-
-        var view = new google.visualization.DataView(data);
-        view.setColumns([0, 1,
-            { calc: "stringify",
-                sourceColumn: 1,
-                type: "string",
-                role: "annotation" },
-            2]);
-
-        var options = {
-            title: "Departamentos",
-            width: 600,
-            height: 600,
-            bar: {groupWidth: "80%"},
-            legend: { position: "none" },
-        };
-
-        var chart = new google.visualization.BarChart(document.getElementById("barchart_values"));
-        chart.draw(view, options);
-    }
-</script>
-<center>
-    <div class="topo" style="">
-        <center><img src="{{asset('/img/logosergestor.png')}}" style="width: 170px; height: 100px"></center>
+                <div class="col-md-6">
+                    <div class="flot-chart">
+                        <div class="flot-chart-content" id="flot-pie-chart"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</center>
+@stop
 
-<center><h4>GRÁFICO CHAMADOS POR DEPARTEMENTO</h4></center>
-<center>
-    <div id="barchart_values" style="width: 100%; height: 100px; margin-top: -20px"></div>
-</center>
+@section('javascript')
+    <script type="text/javascript">
+        // Evento para carregar o relatório
 
-</body>
-</html>
+            // Redirecionando
+            // window.open('/index.php/seracademico/graduacao/curriculo/reportById/' + curriculoId,'_blank');
+
+            // Requisição ajax
+            jQuery.ajax({
+                type: 'POST',
+                url: '{{route('serbinario.graficos.departamentoAjax')}}',
+                datatype: 'json'
+            }).done(function (json) {
+             //console.log(json);
+
+                        //var dados = [['Pagos', json.dados.pagos], ['Não Pagos', json.dados.nPagos], ['Totais', json.dados.totais]];
+                        reportBar(json);
+
+
+            });
+
+
+        // Função para formatar a label
+        function labelFormatter(label, series) {
+            return "<div style='font-size:8pt; text-align:center; padding:3px; color:" + series.color +";'>" + label + "<br/>" + series.data[0][1] + "</div>"
+        }
+
+        // Função para carregar o gráfico de barras
+        function reportBar(dados) {
+
+            $.plot("#flot-bar-chart", [ dados ], {
+                colors: ["#1ab394"],
+                series: {
+                    bars: {
+                        show: true,
+                        barWidth: 0.6,
+                        fill: true,
+                        fillColor: {
+                            colors: [{
+                                opacity: 0.8
+                            }, {
+                                opacity: 0.8
+                            }]
+                        }
+                    }
+                },
+                xaxis: {
+                    mode: "categories",
+                    tickLength: 0
+                },
+                grid: {
+                    color: "#999999",
+                    hoverable: true,
+                    clickable: true,
+                    tickColor: "#D4D4D4",
+                    borderWidth:0
+                },
+                legend: {
+                    show: false
+                },
+            });
+        };
+    </script>
+@stop

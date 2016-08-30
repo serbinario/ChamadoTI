@@ -44,14 +44,16 @@ class GraficosController extends Controller
             ])->get();
 
         $dados = [];
-        $dados[0] = ['Element', 'Chamados', ['role' => 'style']];
+        //$dados[0] = ['Element', 'Chamados', ['role' => 'style']];
 
         $contar = 1;
         foreach ($rows as $row) {
-            $r = [$row->nome, $row->qtd, 'silver'];
-            $dados[$contar] = $r;
+            $r = [$row->nome, $row->qtd];
+            $dados[] = $r;
             $contar++;
         }
+
+      // dd($dados);
 
         return response()->json($dados);
     }
@@ -81,24 +83,15 @@ class GraficosController extends Controller
             ])->get();
 
         $dados = [];
-        $dados[0] = ['Chamados', 'Chamados'];
+        //$dados[0] = ['Chamados', 'Chamados'];
 
         $contar = 1;
         foreach ($rows as $row) {
             $r = [$row->nome, $row->qtd];
-            $dados[$contar] = $r;
+            $dados[] = $r;
             $contar++;
         }
 
-        /*$dados = [];
-        $dados[0] = ['Element', 'Chamados', ['role' => 'style']];
-
-        $contar = 1;
-        foreach ($rows as $row) {
-            $r = [$row->nome, $row->qtd, 'silver'];
-            $dados[$contar] = $r;
-            $contar++;
-        }*/
 
         return response()->json($dados);
     }

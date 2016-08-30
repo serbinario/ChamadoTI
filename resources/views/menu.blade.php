@@ -33,7 +33,7 @@
         <div class="sidebar-collapse">
             <ul class="nav metismenu" id="side-menu">
                 <li class="nav-header">
-                    <img alt="image" class="logoDash" src="{{ asset('/img/logosergestorb.png')}}"/>
+                    <img alt="image" class="logoDash" src="{{ asset('/img/lgo_ti.jpg')}}"/>
                 </li>
                 <li>
                     <a href="{{ route('serbinario.chamado.index') }}"><i class="fa fa-th-large"></i> Chamado</a>
@@ -42,8 +42,8 @@
                     <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Gráficos</span> <span
                                 class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
-                        <li><a href="{{ route('serbinario.graficos.departamento') }}" target="_blank">Departamento</a></li>
-                        <li><a href="{{ route('serbinario.graficos.lista') }}" target="_blank">Lista</a></li>
+                        <li><a href="{{ route('serbinario.graficos.departamento') }}">Departamento</a></li>
+                        <li><a href="{{ route('serbinario.graficos.lista') }}" >Lista</a></li>
                     </ul>
                 </li>
                 <li>
@@ -115,6 +115,14 @@
 
 <script src="https://cdn.datatables.net/buttons/1.0.3/js/dataTables.buttons.min.js"></script>
 <script src="{{ asset('/vendor/datatables/buttons.server-side.js') }}"></script>
+
+<!-- Flot -->
+<script src="{{ asset('js/plugins/flot/jquery.flot.js') }}"></script>
+<script src="{{ asset('js/plugins/flot/jquery.flot.categories.js') }}"></script>
+{{--<script src="{{ asset('js/plugins/flot/jquery.flot.tooltip.min.js') }}"></script>--}}
+<script src="{{ asset('js/plugins/flot/jquery.flot.resize.js') }}"></script>
+<script src="{{ asset('js/plugins/flot/jquery.flot.pie.js') }} "></script>
+<script src="{{ asset('js/plugins/flot/jquery.flot.time.js') }}"></script>
 
 <!-- Custom and plugin javascript -->
 <script src="{{ asset('/js/inspinia.js')}}"></script>
