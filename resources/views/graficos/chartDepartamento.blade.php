@@ -1,5 +1,26 @@
 @extends('menu')
 
+
+@section('css')
+    <style type="text/css" class="init">
+        .DocumentList
+        {
+            overflow-x:scroll;
+            overflow-y:hidden;
+            height:200px;
+            width:100%;
+            padding: 0 15px;
+        }
+
+        .DocumentItem
+        {
+            border:1px solid black;
+            padding:0;
+            height:200px;
+        }
+    </style>
+@endsection
+
 @section('content')
     <div class="ibox float-e-margins">
         <div class="ibox-title">
@@ -13,15 +34,9 @@
         <div class="ibox-content">
             <br><br>
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-12 ">
                     <div class="flot-chart">
                         <div class="flot-chart-content" id="flot-bar-chart"></div>
-                    </div>
-                </div>
-
-                <div class="col-md-6">
-                    <div class="flot-chart">
-                        <div class="flot-chart-content" id="flot-pie-chart"></div>
                     </div>
                 </div>
             </div>
@@ -66,6 +81,7 @@
                         show: true,
                         barWidth: 0.6,
                         fill: true,
+                        horizontal: false,
                         fillColor: {
                             colors: [{
                                 opacity: 0.8
@@ -87,7 +103,7 @@
                     borderWidth:0
                 },
                 legend: {
-                    show: false
+                    show: true
                 },
             });
         };

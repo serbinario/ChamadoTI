@@ -41,7 +41,7 @@ class GraficosController extends Controller
             ->select([
                 'departamento.nome as nome',
                 \DB::raw('count(chamado.id) as qtd'),
-            ])->get();
+            ])->skip(15)->take(25)->get();
 
         $dados = [];
         //$dados[0] = ['Element', 'Chamados', ['role' => 'style']];

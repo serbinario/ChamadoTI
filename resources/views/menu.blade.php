@@ -9,6 +9,7 @@
 
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="{{ asset('/font-awesome/css/font-awesome.css')}}" rel="stylesheet">
+    <link href="{{ asset('/css/bootstrap-horizon.css')}}" rel="stylesheet">
     <link href="{{ asset('/css/select2.min.css')}}" rel="stylesheet">
     <link href="{{ asset('/css/animate.css')}}" rel="stylesheet">
     <link href="{{ asset('/css/style.css')}}" rel="stylesheet">
@@ -33,7 +34,7 @@
         <div class="sidebar-collapse">
             <ul class="nav metismenu" id="side-menu">
                 <li class="nav-header">
-                    <img alt="image" class="logoDash" src="{{ asset('/img/lgo_ti.jpg')}}"/>
+                    <img alt="image" class="logoDash" src="{{ asset('/img/logo_ti2.png')}}"/>
                 </li>
                 <li>
                     <a href="{{ route('serbinario.chamado.index') }}"><i class="fa fa-th-large"></i> Chamado</a>
