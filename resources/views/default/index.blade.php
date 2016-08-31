@@ -19,85 +19,62 @@
             </div>
         @endforeach
     </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Chamdos por período em mêses - Ano 2016 </h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-wrench"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user">
+                            <li><a href="#">Config option 1</a>
+                            </li>
+                            <li><a href="#">Config option 2</a>
+                            </li>
+                        </ul>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div id="morris-one-line-chart"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 @stop
 
 @section('javascript')
     <script type="text/javascript">
 
-        $(document).ready(function(){
-            function format(d) {
+        $(function() {
 
-                var html = "";
+            // Requisição ajax
+            jQuery.ajax({
+                type: 'POST',
+                url: '{{route('serbinario.graficos.graficDashboard')}}',
+                datatype: 'json'
+            }).done(function (json) {
+                console.log(json);
 
-                html += '<center><h5>Descrição</h5></center>';
-                html += '<p style="text-align: justify">"'+d.descricao+'"</p>';
-
-                return html;
-            }
-
-            var table = $('#chamado-grid').DataTable({
-                processing: true,
-                serverSide: true,
-                ajax: {
-                    url: "{!! route('serbinario.chamado.grid') !!}",
-                    method: 'POST'
-                },
-                "order": [[ 2, "asc" ]],
-                columns: [
-                    {
-                        "className":      'details-control',
-                        "orderable":      false,
-                        "data":           'chamado.codigo',
-                        "defaultContent": ''
-                    },
-                    {data: 'codigo', name: 'chamado.codigo'},
-                    {data: 'nome', name: 'users.name'},
-                    {data: 'dep_nome', name: 'departamento.nome'},
-                    {data: 'responsavel', name: 'chamado.responsavel'},
-                    {data: 'lista_nome', name: 'lista.nome'},
-                    {data: 'sublista_nome', name: 'sublista.nome'},
-                    {data: 'data', name: 'chamado.data'},
-                    {data: 'action', name: 'action', orderable: false, searchable: false}
-                ]
-            });
-
-            // Add event listener for opening and closing details
-            $('#chamado-grid tbody').on('click', 'td.details-control', function () {
-                var tr = $(this).closest('tr');
-                var row = table.row( tr );
-
-                if ( row.child.isShown() ) {
-                    // This row is already open - close it
-                    row.child.hide();
-                    tr.removeClass('shown');
-                }
-                else {
-                    // Open this row
-                    row.child( format(row.data()) ).show();
-                    tr.addClass('shown');
-                }
+                Morris.Line({
+                    element: 'morris-one-line-chart',
+                    data: json,
+                    xkey: 'year',
+                    ykeys: ['value'],
+                    resize: true,
+                    lineWidth:4,
+                    labels: ['Chamados'],
+                    lineColors: ['#1ab394'],
+                    pointSize:5,
+                });
             });
         });
-
-
-        /*//Seleciona uma linha
-         $('#crud-grid tbody').on( 'click', 'tr', function () {
-         if ( $(this).hasClass('selected') ) {
-         $(this).removeClass('selected');
-         }
-         else {
-         table.$('tr.selected').removeClass('selected');
-         $(this).addClass('selected');
-         }
-         } );
-
-         //Retonra o id do registro
-         $('#crud-grid tbody').on( 'click', 'tr', function () {
-
-         var rows = table.row( this ).data()
-
-         console.log( rows.id );
-         } );*/
-
     </script>
 @stop

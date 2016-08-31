@@ -20,6 +20,8 @@
     <link href="{{asset('/css/bootstrapValidation.mim.css')}}" rel="stylesheet">
     <link href="{{asset('/css/jquery.datetimepicker.css')}}" rel="stylesheet"/>
 
+    <link href="{{asset('/css/morris/morris-0.4.3.min.css')}}" rel="stylesheet"/>
+
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.0.3/css/buttons.dataTables.min.css">
 
@@ -127,12 +129,15 @@
 <script src="{{ asset('/vendor/datatables/buttons.server-side.js') }}"></script>
 
 <!-- Flot -->
-<script src="{{ asset('js/plugins/flot/jquery.flot.js') }}"></script>
-<script src="{{ asset('js/plugins/flot/jquery.flot.categories.js') }}"></script>
+<script src="{{ asset('/js/plugins/flot/jquery.flot.js') }}"></script>
+<script src="{{ asset('/js/plugins/flot/jquery.flot.categories.js') }}"></script>
 {{--<script src="{{ asset('js/plugins/flot/jquery.flot.tooltip.min.js') }}"></script>--}}
-<script src="{{ asset('js/plugins/flot/jquery.flot.resize.js') }}"></script>
-<script src="{{ asset('js/plugins/flot/jquery.flot.pie.js') }} "></script>
-<script src="{{ asset('js/plugins/flot/jquery.flot.time.js') }}"></script>
+<script src="{{ asset('/js/plugins/flot/jquery.flot.resize.js') }}"></script>
+<script src="{{ asset('/js/plugins/flot/jquery.flot.pie.js') }} "></script>
+<script src="{{ asset('/js/plugins/flot/jquery.flot.time.js') }}"></script>
+
+<script src="{{ asset('/js/plugins/morris/raphael-2.1.0.min.js') }}"></script>
+<script src="{{ asset('/js/plugins/morris/morris.js') }}"></script>
 
 <!-- Custom and plugin javascript -->
 <script src="{{ asset('/js/inspinia.js')}}"></script>

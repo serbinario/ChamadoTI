@@ -50,6 +50,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
             Route::post('departamentoAjax', ['as' => 'departamentoAjax', 'uses' => 'GraficosController@departamentoAjax']);
             Route::get('lista', ['as' => 'lista', 'uses' => 'GraficosController@lista']);
             Route::post('listaAjax', ['as' => 'listaAjax', 'uses' => 'GraficosController@listaAjax']);
+            Route::post('graficDashboard', ['as' => 'graficDashboard', 'uses' => 'DefaultController@graficDashboard']);
         });
 
         Route::group(['prefix' => 'util', 'as' => 'util.'], function () {

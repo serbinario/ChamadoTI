@@ -23,8 +23,29 @@ class DefaultController extends Controller
         return view('default.index', compact('tops'));
     }
 
-    public function topDashboards () {
+    /**
+     * @return string
+     */
+    public function graficDashboard()
+    {
+        #Criando a consulta
+        $rows = \DB::table('chamado')
+            ->groupBy(\DB::raw('DATE_FORMAT(chamado.data,"%m")'))
+            ->whereYear('data', '=', '2016')
+            ->select([
+                \DB::raw('CONCAT("16", "", DATE_FORMAT(chamado.data,"%m")) as data'),
+                //\DB::raw('DATE_FORMAT(chamado.data,"%m") as data'),
+                \DB::raw('count(chamado.id) as qtd'),
+            ])->get();
 
-
+        $dados = [];
+        
+        foreach ($rows as $row) {
+            $r = ['year' => $row->data, 'value' => $row->qtd];
+            $dados[] = $r;
+        }
+        
+        
+        return response()->json($dados);
     }
 }
