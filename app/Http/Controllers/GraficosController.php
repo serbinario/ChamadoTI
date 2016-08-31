@@ -35,25 +35,75 @@ class GraficosController extends Controller
     public function departamentoAjax()
     {
         #Criando a consulta
-        $rows = \DB::table('chamado')
+        $rows1 = \DB::table('chamado')
             ->join('departamento', 'departamento.id', '=', 'chamado.departamento_id')
             ->groupBy('chamado.departamento_id')
+            ->orderBy('departamento.nome')
             ->select([
                 'departamento.nome as nome',
                 \DB::raw('count(chamado.id) as qtd'),
-            ])->skip(15)->take(25)->get();
+            ])->skip(0)->take(15)->get();
 
-        $dados = [];
-        //$dados[0] = ['Element', 'Chamados', ['role' => 'style']];
+        $rows2 = \DB::table('chamado')
+            ->join('departamento', 'departamento.id', '=', 'chamado.departamento_id')
+            ->groupBy('chamado.departamento_id')
+            ->orderBy('departamento.nome')
+            ->select([
+                'departamento.nome as nome',
+                \DB::raw('count(chamado.id) as qtd'),
+            ])->skip(15)->take(30)->get();
 
-        $contar = 1;
-        foreach ($rows as $row) {
+        $rows3 = \DB::table('chamado')
+            ->join('departamento', 'departamento.id', '=', 'chamado.departamento_id')
+            ->groupBy('chamado.departamento_id')
+            ->orderBy('departamento.nome')
+            ->select([
+                'departamento.nome as nome',
+                \DB::raw('count(chamado.id) as qtd'),
+            ])->skip(32)->take(45)->get();
+
+        $rows4 = \DB::table('chamado')
+            ->join('departamento', 'departamento.id', '=', 'chamado.departamento_id')
+            ->groupBy('chamado.departamento_id')
+            ->orderBy('departamento.nome')
+            ->select([
+                'departamento.nome as nome',
+                \DB::raw('count(chamado.id) as qtd'),
+            ])->skip(45)->take(65)->get();
+
+        $dados1 = [];
+        $dados2 = [];
+        $dados3 = [];
+        $dados4 = [];
+
+        $dados  = [];
+
+        foreach ($rows1 as $row) {
             $r = [$row->nome, $row->qtd];
-            $dados[] = $r;
-            $contar++;
+            $dados1[] = $r;
         }
 
-      // dd($dados);
+        foreach ($rows2 as $row) {
+            $r = [$row->nome, $row->qtd];
+            $dados2[] = $r;
+        }
+
+        foreach ($rows3 as $row) {
+            $r = [$row->nome, $row->qtd];
+            $dados3[] = $r;
+        }
+
+        foreach ($rows4 as $row) {
+            $r = [$row->nome, $row->qtd];
+            $dados4[] = $r;
+        }
+
+        $dados[0] = $dados1;
+        $dados[1] = $dados2;
+        $dados[2] = $dados3;
+        $dados[3] = $dados4;
+
+        //dd($dados);
 
         return response()->json($dados);
     }
