@@ -42,7 +42,7 @@ class GraficosController extends Controller
             ->select([
                 'departamento.nome as nome',
                 \DB::raw('count(chamado.id) as qtd'),
-            ])->skip(0)->take(15)->get();
+            ])->take(10)->get();
 
         $rows2 = \DB::table('chamado')
             ->join('departamento', 'departamento.id', '=', 'chamado.departamento_id')
@@ -51,7 +51,7 @@ class GraficosController extends Controller
             ->select([
                 'departamento.nome as nome',
                 \DB::raw('count(chamado.id) as qtd'),
-            ])->skip(15)->take(30)->get();
+            ])->skip(10)->take(10)->get();
 
         $rows3 = \DB::table('chamado')
             ->join('departamento', 'departamento.id', '=', 'chamado.departamento_id')
@@ -60,7 +60,7 @@ class GraficosController extends Controller
             ->select([
                 'departamento.nome as nome',
                 \DB::raw('count(chamado.id) as qtd'),
-            ])->skip(32)->take(45)->get();
+            ])->skip(20)->take(10)->get();
 
         $rows4 = \DB::table('chamado')
             ->join('departamento', 'departamento.id', '=', 'chamado.departamento_id')
@@ -69,12 +69,43 @@ class GraficosController extends Controller
             ->select([
                 'departamento.nome as nome',
                 \DB::raw('count(chamado.id) as qtd'),
-            ])->skip(45)->take(65)->get();
+            ])->skip(30)->take(10)->get();
+
+        $rows5 = \DB::table('chamado')
+            ->join('departamento', 'departamento.id', '=', 'chamado.departamento_id')
+            ->groupBy('chamado.departamento_id')
+            ->orderBy('departamento.nome')
+            ->select([
+                'departamento.nome as nome',
+                \DB::raw('count(chamado.id) as qtd'),
+            ])->skip(40)->take(10)->get();
+
+        $rows6 = \DB::table('chamado')
+            ->join('departamento', 'departamento.id', '=', 'chamado.departamento_id')
+            ->groupBy('chamado.departamento_id')
+            ->orderBy('departamento.nome')
+            ->select([
+                'departamento.nome as nome',
+                \DB::raw('count(chamado.id) as qtd'),
+            ])->skip(50)->take(10)->get();
+
+        $rows7 = \DB::table('chamado')
+            ->join('departamento', 'departamento.id', '=', 'chamado.departamento_id')
+            ->groupBy('chamado.departamento_id')
+            ->orderBy('departamento.nome')
+            ->select([
+                'departamento.nome as nome',
+                \DB::raw('count(chamado.id) as qtd'),
+            ])->skip(60)->take(10)->get();
+        
 
         $dados1 = [];
         $dados2 = [];
         $dados3 = [];
         $dados4 = [];
+        $dados5 = [];
+        $dados6 = [];
+        $dados7 = [];
 
         $dados  = [];
 
@@ -98,10 +129,28 @@ class GraficosController extends Controller
             $dados4[] = $r;
         }
 
+        foreach ($rows5 as $row) {
+            $r = [$row->nome, $row->qtd];
+            $dados5[] = $r;
+        }
+
+        foreach ($rows6 as $row) {
+            $r = [$row->nome, $row->qtd];
+            $dados6[] = $r;
+        }
+
+        foreach ($rows7 as $row) {
+            $r = [$row->nome, $row->qtd];
+            $dados7[] = $r;
+        }
+
         $dados[0] = $dados1;
         $dados[1] = $dados2;
         $dados[2] = $dados3;
         $dados[3] = $dados4;
+        $dados[4] = $dados5;
+        $dados[5] = $dados6;
+        $dados[6] = $dados7;
 
         //dd($dados);
 

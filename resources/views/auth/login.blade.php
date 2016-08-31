@@ -28,7 +28,7 @@
         <div class="col-sm-8 col-md-6">
             <div class="ibox-content">
                 <p>
-                    <img src="{{ asset('/img/lgo_ti.jpg')}}" style="width: 50%;margin-left: 25%;"/>
+                    <img src="{{ asset('/img/logo_ti_login.png')}}" style="width: 50%;margin-left: 25%;"/>
                 </p>
                 {!! Form::open(['url'=>'auth/login', 'method' => "POST"]) !!}
                 {!! csrf_field() !!}

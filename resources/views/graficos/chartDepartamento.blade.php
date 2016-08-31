@@ -81,6 +81,42 @@
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-12 ">
+                    <div class="panel panel-info">
+                        <div class="panel-heading"> </div>
+                        <div class="panel-body">
+                            <div class="flot-chart">
+                                <div class="flot-chart-content" id="flot-bar-chart5"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 ">
+                    <div class="panel panel-info">
+                        <div class="panel-heading"> </div>
+                        <div class="panel-body">
+                            <div class="flot-chart">
+                                <div class="flot-chart-content" id="flot-bar-chart6"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 ">
+                    <div class="panel panel-info">
+                        <div class="panel-heading"> </div>
+                        <div class="panel-body">
+                            <div class="flot-chart">
+                                <div class="flot-chart-content" id="flot-bar-chart7"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 @stop
@@ -89,6 +125,38 @@
     <script type="text/javascript">
         // Evento para carregar o relatório
 
+        var options = {
+            colors: ["#1ab394"],
+            series: {
+                bars: {
+                    show: true,
+                    barWidth: 0.6,
+                    fill: true,
+                    horizontal: false,
+                    fillColor: {
+                        colors: [{
+                            opacity: 0.8
+                        }, {
+                            opacity: 0.8
+                        }]
+                    }
+                }
+            },
+            xaxis: {
+                mode: "categories",
+                tickLength: 0
+            },
+            grid: {
+                color: "#999999",
+                hoverable: true,
+                clickable: true,
+                tickColor: "#D4D4D4",
+                borderWidth:0
+            },
+            legend: {
+                show: true
+            },
+        };
 
             // Requisição ajax
             jQuery.ajax({
@@ -96,12 +164,15 @@
                 url: '{{route('serbinario.graficos.departamentoAjax')}}',
                 datatype: 'json'
             }).done(function (json) {
-             console.log(json[3].length);
+             console.log(json);
 
                 reportBar1(json[0]);
                 reportBar2(json[1]);
                 reportBar3(json[2]);
                 reportBar4(json[3]);
+                reportBar5(json[4]);
+                reportBar6(json[5]);
+                reportBar7(json[6]);
             });
 
 
@@ -113,147 +184,31 @@
 
         // Função para carregar o gráfico de barras
         function reportBar1(dados) {
-
-            $.plot("#flot-bar-chart1", [ dados ], {
-                colors: ["#1ab394"],
-                series: {
-                    bars: {
-                        show: true,
-                        barWidth: 0.6,
-                        fill: true,
-                        horizontal: false,
-                        fillColor: {
-                            colors: [{
-                                opacity: 0.8
-                            }, {
-                                opacity: 0.8
-                            }]
-                        }
-                    }
-                },
-                xaxis: {
-                    mode: "categories",
-                    tickLength: 0
-                },
-                grid: {
-                    color: "#999999",
-                    hoverable: true,
-                    clickable: true,
-                    tickColor: "#D4D4D4",
-                    borderWidth:0
-                },
-                legend: {
-                    show: true
-                },
-            });
+            $.plot("#flot-bar-chart1", [ dados ], options);
         };
 
         function reportBar2(dados) {
-
-            $.plot("#flot-bar-chart2", [ dados ], {
-                colors: ["#1ab394"],
-                series: {
-                    bars: {
-                        show: true,
-                        barWidth: 0.6,
-                        fill: true,
-                        horizontal: false,
-                        fillColor: {
-                            colors: [{
-                                opacity: 0.8
-                            }, {
-                                opacity: 0.8
-                            }]
-                        }
-                    }
-                },
-                xaxis: {
-                    mode: "categories",
-                    tickLength: 0
-                },
-                grid: {
-                    color: "#999999",
-                    hoverable: true,
-                    clickable: true,
-                    tickColor: "#D4D4D4",
-                    borderWidth:0
-                },
-                legend: {
-                    show: true
-                },
-            });
+            $.plot("#flot-bar-chart2", [ dados ], options);
         };
 
         function reportBar3(dados) {
-
-            $.plot("#flot-bar-chart3", [ dados ], {
-                colors: ["#1ab394"],
-                series: {
-                    bars: {
-                        show: true,
-                        barWidth: 0.6,
-                        fill: true,
-                        horizontal: false,
-                        fillColor: {
-                            colors: [{
-                                opacity: 0.8
-                            }, {
-                                opacity: 0.8
-                            }]
-                        }
-                    }
-                },
-                xaxis: {
-                    mode: "categories",
-                    tickLength: 0
-                },
-                grid: {
-                    color: "#999999",
-                    hoverable: true,
-                    clickable: true,
-                    tickColor: "#D4D4D4",
-                    borderWidth:0
-                },
-                legend: {
-                    show: true
-                },
-            });
+            $.plot("#flot-bar-chart3", [ dados ], options);
         };
 
         function reportBar4(dados) {
+            $.plot("#flot-bar-chart4", [ dados ], options);
+        };
 
-            $.plot("#flot-bar-chart4", [ dados ], {
-                colors: ["#1ab394"],
-                series: {
-                    bars: {
-                        show: true,
-                        barWidth: 0.6,
-                        fill: true,
-                        horizontal: false,
-                        fillColor: {
-                            colors: [{
-                                opacity: 0.8
-                            }, {
-                                opacity: 0.8
-                            }]
-                        }
-                    }
-                },
-                xaxis: {
-                    mode: "categories",
-                    tickLength: 0
-                },
-                grid: {
-                    color: "#999999",
-                    hoverable: true,
-                    clickable: true,
-                    tickColor: "#D4D4D4",
-                    borderWidth:0
-                },
-                legend: {
-                    show: true
-                },
-            });
+        function reportBar5(dados) {
+            $.plot("#flot-bar-chart5", [ dados ], options);
+        };
+
+        function reportBar6(dados) {
+            $.plot("#flot-bar-chart6", [ dados ], options);
+        };
+
+        function reportBar7(dados) {
+            $.plot("#flot-bar-chart7", [ dados ], options);
         };
     </script>
 @stop
