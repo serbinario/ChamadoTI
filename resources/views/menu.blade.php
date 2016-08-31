@@ -37,7 +37,10 @@
                     <img alt="image" class="logoDash" src="{{ asset('/img/logo_ti2.png')}}"/>
                 </li>
                 <li>
-                    <a href="{{ route('serbinario.chamado.index') }}"><i class="fa fa-th-large"></i> Chamado</a>
+                    <a href="{{ route('serbinario.chamado.index') }}">
+                        <i class="fa fa-th-large"></i>
+                        <span class="nav-label">Chamados</span>
+                    </a>
                 </li>
                 <li>
                     <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Gráficos</span> <span
