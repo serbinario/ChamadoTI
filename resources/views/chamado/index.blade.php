@@ -72,7 +72,7 @@
                             <tr>
                                 <th>Detalhe</th>
                                 <th>Código</th>
-                                <th>Nome</th>
+                                <th>Técnico</th>
                                 <th>Departamento</th>
                                 <th>Responsável</th>
                                 <th>Lista</th>
@@ -85,7 +85,7 @@
                             <tr>
                                 <th>Detalhe</th>
                                 <th>Código</th>
-                                <th>Nome</th>
+                                <th>Técnico</th>
                                 <th>Departamento</th>
                                 <th>Responsável</th>
                                 <th>Lista</th>
