@@ -57,9 +57,12 @@
                         <li><a href="{{ route('serbinario.graficos.departamento') }}">Departamento</a></li>
                         <li><a href="{{ route('serbinario.graficos.lista') }}" >Lista</a></li>
                         <li><a href="{{ route('serbinario.graficos.bySecretaria') }}" >Secretarias</a></li>
+                        @role('admin')
                         <li><a href="{{ route('serbinario.graficos.byTecnico') }}" >Técnicos</a></li>
+                        @endrole
                     </ul>
                 </li>
+                @role('admin')
                 <li>
                     <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Administrador</span> <span
                                 class="fa arrow"></span></a>
@@ -68,6 +71,7 @@
                         <li><a href="{{ route('serbinario.role.index') }}">Perfís</a></li>
                     </ul>
                 </li>
+                @endrole
             </ul>
 
         </div>

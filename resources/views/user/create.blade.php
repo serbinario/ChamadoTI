@@ -52,45 +52,48 @@
                     <div class="tab-content">
                         <div role="tabpanel" class="tab-pane active" id="user">
                             <br/>
-
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    {!! Form::label('name', 'Nome') !!}
-                                    {!! Form::text('name', '', array('class' => 'form-control')) !!}
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    {!! Form::label('email', 'Email') !!}
-                                    {!! Form::text('email', '', array('class' => 'form-control')) !!}
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    {!! Form::label('password', 'Senha') !!}
-                                    {!! Form::password('password', '', array('class' => 'form-control')) !!}
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="fileinput fileinput-new" data-provides="fileinput">
-                                    <div class="fileinput-preview thumbnail" data-trigger="fileinput"
-                                         style="width: 135px; height: 115px;">
-                                    </div>
-                                    <div>
-                                        <span class="btn btn-primary btn-xs btn-block btn-file">
-                                            <span class="fileinput-new">Selecionar</span>
-                                            <span class="fileinput-exists">Mudar</span>
-                                            <input type="file" name="img">
-                                        </span>
-                                        {{--<a href="#" class="btn btn-warning btn-xs fileinput-exists col-md-6" data-dismiss="fileinput">Remover</a>--}}
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        {!! Form::label('name', 'Nome') !!}
+                                        {!! Form::text('name', '', array('class' => 'form-control')) !!}
                                     </div>
                                 </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        {!! Form::label('email', 'Email') !!}
+                                        {!! Form::text('email', '', array('class' => 'form-control')) !!}
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        {!! Form::label('password', 'Senha') !!}
+                                        {!! Form::password('password', '', array('class' => 'form-control')) !!}
+                                    </div>
+                                </div>
+                                {{--<div class="col-md-4">
+                                    <div class="fileinput fileinput-new" data-provides="fileinput">
+                                        <div class="fileinput-preview thumbnail" data-trigger="fileinput"
+                                             style="width: 135px; height: 115px;">
+                                        </div>
+                                        <div>
+                                            <span class="btn btn-primary btn-xs btn-block btn-file">
+                                                <span class="fileinput-new">Selecionar</span>
+                                                <span class="fileinput-exists">Mudar</span>
+                                                <input type="file" name="img">
+                                            </span>
+                                            --}}{{--<a href="#" class="btn btn-warning btn-xs fileinput-exists col-md-6" data-dismiss="fileinput">Remover</a>--}}{{--
+                                        </div>
+                                    </div>
+                                </div>--}}
                             </div>
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    {!! Form::hidden('active', 0) !!}
-                                    {!! Form::label('active', 'Ativo') !!}
-                                    {!! Form::checkbox('active', 1, null, array('class' => 'form-control')) !!}
+                            <div class="row">
+                                <div class="col-md-1">
+                                    <div class="checkbox checkbox-primary">
+                                        {!! Form::hidden('active', 0) !!}
+                                        {!! Form::checkbox('active', 1, null, array('class' => 'form-control')) !!}
+                                        {!! Form::label('active', 'Ativo') !!}
+                                    </div>
                                 </div>
                             </div>
                         </div>

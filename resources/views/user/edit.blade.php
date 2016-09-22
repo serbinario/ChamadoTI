@@ -52,49 +52,52 @@
                     <div class="tab-content">
                         <div role="tabpanel" class="tab-pane active" id="user">
                             <br/>
-
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    {!! Form::label('name', 'Nome') !!}
-                                    {!! Form::text('name', null, array('class' => 'form-control')) !!}
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    {!! Form::label('email', 'Email') !!}
-                                    {!! Form::text('email', null, array('class' => 'form-control')) !!}
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    {!! Form::label('password', 'Senha') !!}
-                                    {!! Form::password('password', '', array('class' => 'form-control')) !!}
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="fileinput fileinput-new" data-provides="fileinput">
-                                    <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 135px; height: 115px;">
-                                        @if ($user->path_image != null)
-                                            <div id="midias">
-                                                <img id="logo" src="/seracademico-laravel/public/images/{{$user->path_image}}"  alt="Foto" height="120" width="100"/><br/>
-                                            </div>
-                                        @endif
-                                    </div>
-                                    <div>
-                                        <span class="btn btn-primary btn-xs btn-block btn-file">
-                                            <span class="fileinput-new">Selecionar</span>
-                                            <span class="fileinput-exists">Mudar</span>
-                                            <input type="file" name="img">
-                                        </span>
-                                        <a href="#" class="btn btn-warning btn-xs fileinput-exists col-md-6" data-dismiss="fileinput">Remover</a>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        {!! Form::label('name', 'Nome') !!}
+                                        {!! Form::text('name', null, array('class' => 'form-control')) !!}
                                     </div>
                                 </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        {!! Form::label('email', 'Email') !!}
+                                        {!! Form::text('email', null, array('class' => 'form-control')) !!}
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        {!! Form::label('password', 'Senha') !!}
+                                        {!! Form::password('password', '', array('class' => 'form-control')) !!}
+                                    </div>
+                                </div>
+                                {{--<div class="col-md-4">
+                                    <div class="fileinput fileinput-new" data-provides="fileinput">
+                                        <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 135px; height: 115px;">
+                                            @if ($user->path_image != null)
+                                                <div id="midias">
+                                                    <img id="logo" src="/seracademico-laravel/public/images/{{$user->path_image}}"  alt="Foto" height="120" width="100"/><br/>
+                                                </div>
+                                            @endif
+                                        </div>
+                                        <div>
+                                            <span class="btn btn-primary btn-xs btn-block btn-file">
+                                                <span class="fileinput-new">Selecionar</span>
+                                                <span class="fileinput-exists">Mudar</span>
+                                                <input type="file" name="img">
+                                            </span>
+                                            <a href="#" class="btn btn-warning btn-xs fileinput-exists col-md-6" data-dismiss="fileinput">Remover</a>
+                                        </div>
+                                    </div>
+                                </div>--}}
                             </div>
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    {!! Form::hidden('active', 0) !!}
-                                    {!! Form::label('active', 'Ativo') !!}
-                                    {!! Form::checkbox('active', 1, null, array('class' => 'form-control')) !!}
+                            <div class="row">
+                                <div class="col-md-1">
+                                    <div class="checkbox checkbox-primary">
+                                        {!! Form::hidden('active', 0) !!}
+                                        {!! Form::checkbox('active', 1, null, array('class' => 'form-control')) !!}
+                                        {!! Form::label('active', 'Ativo') !!}
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -110,13 +113,34 @@
                                             <input type="checkbox"> Todos
                                         @endif
                                         <ul>
-                                            @if(isset($loadFields['permission']))
-                                                @foreach($loadFields['permission'] as $id => $permission)
-                                                    @if(\in_array($permission, $user->permissions->lists('name')->all()))
-                                                        <li><input type="checkbox" name="permission[]" checked value="{{ $id  }}"> {{ $permission }} </li>
-                                                    @else
-                                                        <li><input type="checkbox" name="permission[]" value="{{ $id  }}"> {{ $permission }} </li>
-                                                    @endif
+                                        @if(isset($loadFields['tipopermissao']))
+                                            @foreach($loadFields['tipopermissao'] as $tipo)
+                                                <!-- Inicio Accordion  -->
+                                                    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                                                        <div class="panel panel-default">
+                                                            <div class="panel-heading" role="tab" id="headingTwo">
+                                                                <h4 class="panel-title">
+                                                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#body-{{ $tipo->id }}" aria-expanded="false" aria-controls="body-{{ $tipo->id }}">
+                                                                        {{ $tipo->name }}
+                                                                    </a>
+                                                                </h4>
+                                                            </div>
+                                                            <div id="body-{{ $tipo->id  }}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                                                                <div class="panel-body">
+                                                                    @if(count($tipo->permissoes) > 0)
+                                                                        @foreach($tipo->permissoes as $permission)
+                                                                            @if(\in_array($permission->name, $user->permissions->lists('name')->all()))
+                                                                                <li><input type="checkbox" name="permission[]" checked value="{{ $permission->id  }}"> {{ $permission->description }} </li>
+                                                                            @else
+                                                                                <li><input type="checkbox" name="permission[]" value="{{ $permission->id  }}"> {{ $permission->description }} </li>
+                                                                            @endif
+                                                                        @endforeach
+                                                                    @endif
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Fim Accordion  -->
                                                 @endforeach
                                             @endif
                                         </ul>
