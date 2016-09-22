@@ -25,7 +25,7 @@
                 <div class="form-group">
                     {!! Form::label('lista', 'Lista ') !!}
                     @if(isset($model->sublista->lista->id))
-                        {!! Form::select('lista', $loadFields['lista'], $model->sublista->lista->id, array('class' => 'form-control', 'id' => 'estado')) !!}
+                        {!! Form::select('lista', $loadFields['lista'], $model->sublista->lista->id, array('class' => 'form-control', 'id' => 'lista')) !!}
                     @else
                         {!! Form::select('lista', (['' => 'Selecione uma lista'] + $loadFields['lista']->toArray()), Session::getOldInput('estado'), array('class' => 'form-control', 'id' => 'lista')) !!}
                     @endif

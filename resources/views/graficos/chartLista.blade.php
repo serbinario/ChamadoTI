@@ -18,12 +18,6 @@
                         <div class="flot-chart-content" id="flot-bar-chart"></div>
                     </div>
                 </div>
-
-                <div class="col-md-6">
-                    <div class="flot-chart">
-                        <div class="flot-chart-content" id="flot-pie-chart"></div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>

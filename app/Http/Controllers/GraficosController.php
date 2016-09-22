@@ -24,6 +24,94 @@ class GraficosController extends Controller
     /**
      * @return mixed
      */
+    public function bySecretaria()
+    {
+        
+        $secretarias = \DB::table('departamento')->orderBy('nome')->get();
+        
+        return view('graficos.bySecretaria', compact('secretarias'));
+    }
+
+    /**
+     * @return string
+     */
+    public function graficoBySecretaria(Request $request)
+    {
+        
+        $campo = $request->request->get('campo');
+
+        #Criando a consulta
+        $rows = \DB::table('chamado')
+            ->join('departamento', 'departamento.id', "=", "chamado.departamento_id")
+            ->where('departamento.id', '=', $campo)
+            ->whereYear('data', '=', '2016')
+            ->groupBy(\DB::raw('DATE_FORMAT(chamado.data,"%m")'))
+            ->select([
+                \DB::raw('CONCAT("16", "", DATE_FORMAT(chamado.data,"%m")) as data'),
+                //\DB::raw('DATE_FORMAT(chamado.data,"%m") as data'),
+                \DB::raw('count(chamado.id) as qtd'),
+            ])->get();
+
+        //dd($rows);
+
+        $dados = [];
+
+        foreach ($rows as $row) {
+            $r = ['year' => $row->data, 'value' => $row->qtd];
+            $dados[] = $r;
+        }
+
+
+        return response()->json($dados);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function byTecnico()
+    {
+
+        $tecnicos = \DB::table('users')->orderBy('name')->get();
+
+        return view('graficos.byTecnicos', compact('tecnicos'));
+    }
+
+    /**
+     * @return string
+     */
+    public function graficoByTecnico(Request $request)
+    {
+
+        $campo = $request->request->get('campo');
+
+        #Criando a consulta
+        $rows = \DB::table('chamado')
+            ->join('users', 'users.id', "=", "chamado.users_id")
+            ->where('users.id', '=', $campo)
+            ->whereYear('data', '=', '2016')
+            ->groupBy(\DB::raw('DATE_FORMAT(chamado.data,"%m")'))
+            ->select([
+                \DB::raw('CONCAT("16", "", DATE_FORMAT(chamado.data,"%m")) as data'),
+                //\DB::raw('DATE_FORMAT(chamado.data,"%m") as data'),
+                \DB::raw('count(chamado.id) as qtd'),
+            ])->get();
+
+        //dd($rows);
+
+        $dados = [];
+
+        foreach ($rows as $row) {
+            $r = ['year' => $row->data, 'value' => $row->qtd];
+            $dados[] = $r;
+        }
+
+
+        return response()->json($dados);
+    }
+    
+    /**
+     * @return mixed
+     */
     public function departamento()
     {
         return view('graficos.chartDepartamento');

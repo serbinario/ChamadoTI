@@ -154,7 +154,8 @@
                 borderWidth:0
             },
             legend: {
-                show: true
+                show: true,
+                formatter : labelFormatter
             },
         };
 
@@ -179,7 +180,7 @@
         // Função para formatar a label
         function labelFormatter(label, series) {
             //console.log(series.data)
-            return "<div style='font-size:8pt; text-align:center; padding:3px; color:" + series.color +";'>" + label + "<br/>" + series.data[0][1] + "</div>"
+            return "<div style='font-size:20pt; text-align:center; padding:3px; color:" + series.color +";'>" + label + "<br/>" + series.data[0][1] + "</div>"
         }
 
         // Função para carregar o gráfico de barras

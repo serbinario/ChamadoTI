@@ -23,7 +23,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Chamdos por período em mêses - Ano 2016 </h5>
+                    <h5>Chamados por período em mês - Ano 2016 </h5>
                     <div class="ibox-tools">
                         <a class="collapse-link">
                             <i class="fa fa-chevron-up"></i>
@@ -61,7 +61,6 @@
                 url: '{{route('serbinario.graficos.graficDashboard')}}',
                 datatype: 'json'
             }).done(function (json) {
-                console.log(json);
 
                 Morris.Line({
                     element: 'morris-one-line-chart',

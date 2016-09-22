@@ -56,6 +56,8 @@
                     <ul class="nav nav-second-level collapse">
                         <li><a href="{{ route('serbinario.graficos.departamento') }}">Departamento</a></li>
                         <li><a href="{{ route('serbinario.graficos.lista') }}" >Lista</a></li>
+                        <li><a href="{{ route('serbinario.graficos.bySecretaria') }}" >Secretarias</a></li>
+                        <li><a href="{{ route('serbinario.graficos.byTecnico') }}" >Técnicos</a></li>
                     </ul>
                 </li>
                 <li>
