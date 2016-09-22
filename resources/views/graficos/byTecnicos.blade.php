@@ -43,7 +43,7 @@
                                         @endforeach
                                     </select>
                                     <span class="input-group-btn">
-                                    <button class="btn btn-primary" id="search" type="button">Go! </button>
+                                    <button class="btn btn-primary" id="search" type="button">Gerar </button>
                                     </span>
                                 </div>
                             </div>
