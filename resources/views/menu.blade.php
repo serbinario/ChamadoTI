@@ -62,7 +62,7 @@
                         @endrole
                     </ul>
                 </li>
-                {{--@role('admin')--}}
+                @role('admin')
                 <li>
                     <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Cadastros</span> <span
                                 class="fa arrow"></span></a>
@@ -71,7 +71,7 @@
                         <li><a href="{{ route('serbinario.sublista.index') }}">Sublista</a></li>
                     </ul>
                 </li>
-                {{--@endrole--}}
+                @endrole
                 @role('admin')
                 <li>
                     <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Administrador</span> <span
