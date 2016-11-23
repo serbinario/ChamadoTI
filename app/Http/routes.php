@@ -26,6 +26,24 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
             Route::post('update/{id}', ['as' => 'update', 'uses' => 'ChamadoController@update']);
         });
 
+        Route::group(['prefix' => 'lista', 'as' => 'lista.'], function () {
+            Route::get('index', ['as' => 'index', 'uses' => 'ListaController@index']);
+            Route::post('grid', ['as' => 'grid', 'uses' => 'ListaController@grid']);
+            Route::get('create', ['as' => 'create', 'uses' => 'ListaController@create']);
+            Route::post('store', ['as' => 'store', 'uses' => 'ListaController@store']);
+            Route::get('edit/{id}', ['as' => 'edit', 'uses' => 'ListaController@edit']);
+            Route::post('update/{id}', ['as' => 'update', 'uses' => 'ListaController@update']);
+        });
+        
+        Route::group(['prefix' => 'sublista', 'as' => 'sublista.'], function () {
+            Route::get('index', ['as' => 'index', 'uses' => 'SublistaController@index']);
+            Route::post('grid', ['as' => 'grid', 'uses' => 'SublistaController@grid']);
+            Route::get('create', ['as' => 'create', 'uses' => 'SublistaController@create']);
+            Route::post('store', ['as' => 'store', 'uses' => 'SublistaController@store']);
+            Route::get('edit/{id}', ['as' => 'edit', 'uses' => 'SublistaController@edit']);
+            Route::post('update/{id}', ['as' => 'update', 'uses' => 'SublistaController@update']);
+        });
+
 
         Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
             Route::get('index', ['as' => 'index', 'uses' => 'UserController@index']);

@@ -44,10 +44,21 @@ class SeracademicoRepositoryProvider extends ServiceProvider
 			\Serbinario\Repositories\FornecedorRepository::class,
 			\Serbinario\Repositories\FornecedorRepositoryEloquent::class
 		);
-		
+		
+
 		$this->app->bind(
 			\Serbinario\Repositories\ChamadoRepository::class,
 			\Serbinario\Repositories\ChamadoRepositoryEloquent::class
 		);
+
+        $this->app->bind(
+            \Serbinario\Repositories\ListaRepository::class,
+            \Serbinario\Repositories\ListaRepositoryEloquent::class
+        );
+
+        $this->app->bind(
+            \Serbinario\Repositories\SublistaRepository::class,
+            \Serbinario\Repositories\SublistaRepositoryEloquent::class
+        );
 	}
 }
