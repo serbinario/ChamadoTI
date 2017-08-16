@@ -260,14 +260,21 @@ class GraficosController extends Controller
      */
     public function listaAjax()
     {
+
+        $data = new \DateTime('now');
+        $ano  = $data->format('Y');
+        $anoSimple  = $data->format('y');
+
         #Criando a consulta
         $rows = \DB::table('chamado')
             ->join('sublista', 'sublista.id', '=', 'chamado.sublista_id')
             ->join('lista', 'lista.id', '=', 'sublista.lista_id')
+            ->whereYear('data', '=', $ano)
             ->groupBy('sublista.lista_id')
             ->select([
                 'lista.nome as nome',
                 \DB::raw('count(chamado.id) as qtd'),
+                \DB::raw("CONCAT({$anoSimple}, '', DATE_FORMAT(chamado.data,'%m')) as data"),
             ])->get();
 
         $dados = [];
