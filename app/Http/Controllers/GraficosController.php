@@ -37,22 +37,23 @@ class GraficosController extends Controller
      */
     public function graficoBySecretaria(Request $request)
     {
-        
+
+        $data = new \DateTime('now');
+        $ano  = $data->format('Y');
+        $anoSimple  = $data->format('y');
+
         $campo = $request->request->get('campo');
 
         #Criando a consulta
         $rows = \DB::table('chamado')
             ->join('departamento', 'departamento.id', "=", "chamado.departamento_id")
             ->where('departamento.id', '=', $campo)
-            ->whereYear('data', '=', '2016')
+            ->whereYear('data', '=', $ano)
             ->groupBy(\DB::raw('DATE_FORMAT(chamado.data,"%m")'))
             ->select([
-                \DB::raw('CONCAT("16", "", DATE_FORMAT(chamado.data,"%m")) as data'),
-                //\DB::raw('DATE_FORMAT(chamado.data,"%m") as data'),
+                \DB::raw("CONCAT({$anoSimple}, '', DATE_FORMAT(chamado.data,'%m')) as data"),
                 \DB::raw('count(chamado.id) as qtd'),
             ])->get();
-
-        //dd($rows);
 
         $dados = [];
 
@@ -82,21 +83,23 @@ class GraficosController extends Controller
     public function graficoByTecnico(Request $request)
     {
 
+        $data = new \DateTime('now');
+        $ano  = $data->format('Y');
+        $anoSimple  = $data->format('y');
+
         $campo = $request->request->get('campo');
 
         #Criando a consulta
         $rows = \DB::table('chamado')
             ->join('users', 'users.id', "=", "chamado.users_id")
             ->where('users.id', '=', $campo)
-            ->whereYear('data', '=', '2016')
+            ->whereYear('data', '=', $ano)
             ->groupBy(\DB::raw('DATE_FORMAT(chamado.data,"%m")'))
             ->select([
-                \DB::raw('CONCAT("16", "", DATE_FORMAT(chamado.data,"%m")) as data'),
+                \DB::raw("CONCAT({$anoSimple}, '', DATE_FORMAT(chamado.data,'%m')) as data"),
                 //\DB::raw('DATE_FORMAT(chamado.data,"%m") as data'),
                 \DB::raw('count(chamado.id) as qtd'),
             ])->get();
-
-        //dd($rows);
 
         $dados = [];
 
@@ -240,8 +243,6 @@ class GraficosController extends Controller
         $dados[5] = $dados6;
         $dados[6] = $dados7;
 
-        //dd($dados);
-
         return response()->json($dados);
     }
 
@@ -270,7 +271,6 @@ class GraficosController extends Controller
             ])->get();
 
         $dados = [];
-        //$dados[0] = ['Chamados', 'Chamados'];
 
         $contar = 1;
         foreach ($rows as $row) {
@@ -303,7 +303,6 @@ class GraficosController extends Controller
                 \DB::raw('count(ouv_demanda.id) as qtd'),
             ])->get();
 
-        //dd($rows);
 
         $dados = [];
         $dados[0] = ['Element', 'Density', ['role' => 'style']];
@@ -317,32 +316,5 @@ class GraficosController extends Controller
 
         return response()->json($dados);
     }
-
-    /**
-     * @return string
-     */
-    /*public function idadeAjax()
-    {
-        #Criando a consulta
-        $rows = \DB::table('ouv_demanda')
-            ->join('ouv_idade', 'ouv_idade.id', '=', 'ouv_demanda.idade_id')
-            ->groupBy('ouv_demanda.idade_id')
-            ->select([
-                'ouv_idade.nome as nome',
-                \DB::raw('count(ouv_demanda.id) as qtd'),
-            ])->get();
-
-        $dados = [];
-        $dados[0] = ['Idade', 'Idades'];
-
-        $contar = 1;
-        foreach ($rows as $row) {
-            $r = [$row->nome, $row->qtd];
-            $dados[$contar] = $r;
-            $contar++;
-        }
-
-        return response()->json($dados);
-    }*/
 
 }

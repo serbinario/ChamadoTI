@@ -28,12 +28,17 @@ class DefaultController extends Controller
      */
     public function graficDashboard()
     {
+
+        $data = new \DateTime('now');
+        $ano  = $data->format('Y');
+        $anoSimple  = $data->format('y');
+
         #Criando a consulta
         $rows = \DB::table('chamado')
             ->groupBy(\DB::raw('DATE_FORMAT(chamado.data,"%m")'))
-            ->whereYear('data', '=', '2016')
+            ->whereYear('data', '=', $ano)
             ->select([
-                \DB::raw('CONCAT("16", "", DATE_FORMAT(chamado.data,"%m")) as data'),
+                \DB::raw("CONCAT({$anoSimple}, '', DATE_FORMAT(chamado.data,'%m')) as data"),
                 //\DB::raw('DATE_FORMAT(chamado.data,"%m") as data'),
                 \DB::raw('count(chamado.id) as qtd'),
             ])->get();
