@@ -125,68 +125,87 @@ class GraficosController extends Controller
      */
     public function departamentoAjax()
     {
+
+        $data = new \DateTime('now');
+        $ano  = $data->format('Y');
+        $anoSimple  = $data->format('y');
+
         #Criando a consulta
         $rows1 = \DB::table('chamado')
             ->join('departamento', 'departamento.id', '=', 'chamado.departamento_id')
             ->groupBy('chamado.departamento_id')
             ->orderBy('departamento.nome')
+            ->whereYear('data', '=', $ano)
             ->select([
                 'departamento.nome as nome',
                 \DB::raw('count(chamado.id) as qtd'),
+                \DB::raw("CONCAT({$anoSimple}, '', DATE_FORMAT(chamado.data,'%m')) as data"),
             ])->take(10)->get();
 
         $rows2 = \DB::table('chamado')
             ->join('departamento', 'departamento.id', '=', 'chamado.departamento_id')
             ->groupBy('chamado.departamento_id')
             ->orderBy('departamento.nome')
+            ->whereYear('data', '=', $ano)
             ->select([
                 'departamento.nome as nome',
                 \DB::raw('count(chamado.id) as qtd'),
+                \DB::raw("CONCAT({$anoSimple}, '', DATE_FORMAT(chamado.data,'%m')) as data"),
             ])->skip(10)->take(10)->get();
 
         $rows3 = \DB::table('chamado')
             ->join('departamento', 'departamento.id', '=', 'chamado.departamento_id')
             ->groupBy('chamado.departamento_id')
             ->orderBy('departamento.nome')
+            ->whereYear('data', '=', $ano)
             ->select([
                 'departamento.nome as nome',
                 \DB::raw('count(chamado.id) as qtd'),
+                \DB::raw("CONCAT({$anoSimple}, '', DATE_FORMAT(chamado.data,'%m')) as data"),
             ])->skip(20)->take(10)->get();
 
         $rows4 = \DB::table('chamado')
             ->join('departamento', 'departamento.id', '=', 'chamado.departamento_id')
             ->groupBy('chamado.departamento_id')
             ->orderBy('departamento.nome')
+            ->whereYear('data', '=', $ano)
             ->select([
                 'departamento.nome as nome',
                 \DB::raw('count(chamado.id) as qtd'),
+                \DB::raw("CONCAT({$anoSimple}, '', DATE_FORMAT(chamado.data,'%m')) as data"),
             ])->skip(30)->take(10)->get();
 
         $rows5 = \DB::table('chamado')
             ->join('departamento', 'departamento.id', '=', 'chamado.departamento_id')
             ->groupBy('chamado.departamento_id')
             ->orderBy('departamento.nome')
+            ->whereYear('data', '=', $ano)
             ->select([
                 'departamento.nome as nome',
                 \DB::raw('count(chamado.id) as qtd'),
+                \DB::raw("CONCAT({$anoSimple}, '', DATE_FORMAT(chamado.data,'%m')) as data"),
             ])->skip(40)->take(10)->get();
 
         $rows6 = \DB::table('chamado')
             ->join('departamento', 'departamento.id', '=', 'chamado.departamento_id')
             ->groupBy('chamado.departamento_id')
             ->orderBy('departamento.nome')
+            ->whereYear('data', '=', $ano)
             ->select([
                 'departamento.nome as nome',
                 \DB::raw('count(chamado.id) as qtd'),
+                \DB::raw("CONCAT({$anoSimple}, '', DATE_FORMAT(chamado.data,'%m')) as data"),
             ])->skip(50)->take(10)->get();
 
         $rows7 = \DB::table('chamado')
             ->join('departamento', 'departamento.id', '=', 'chamado.departamento_id')
             ->groupBy('chamado.departamento_id')
             ->orderBy('departamento.nome')
+            ->whereYear('data', '=', $ano)
             ->select([
                 'departamento.nome as nome',
                 \DB::raw('count(chamado.id) as qtd'),
+                \DB::raw("CONCAT({$anoSimple}, '', DATE_FORMAT(chamado.data,'%m')) as data"),
             ])->skip(60)->take(10)->get();
         
 
